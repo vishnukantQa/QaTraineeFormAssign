@@ -1,0 +1,14 @@
+div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+p{
+    margin-top: 4vh;
+    color: darkslategrey;
+}
+
+.color-res{
+    color: darkgoldenrod;
+}

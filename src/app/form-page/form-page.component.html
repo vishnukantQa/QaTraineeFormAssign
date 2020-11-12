@@ -1,0 +1,29 @@
+
+  <form (ngSubmit)="onSubmit(formElememt)" #formElememt="ngForm">
+    <div class="width">
+      <label for="name" >Name</label>
+      <input type="text"  placeholder="Name" ngModel name="name" />
+    
+    </div>
+    <div class="width">
+      <label for="email" >Email </label>
+      <input type="text" placeholder="email"  ngModel name="email" />
+    </div>
+    <div class="width">
+      <label for="phone" >Phone </label>
+      <input type="number" placeholder="Phone"  id="phone" ngModel name="phone">
+    </div>
+    <div class="width">
+      <label for="Dob" >Date Of Birth</label>
+      <input type="date" placeholder="Date" ngModel name="date"  />
+    </div>
+
+    <div>
+
+      <button type="submit" class="btn btn-primary">Submit</button>
+
+    </div>
+
+
+
+  </form>

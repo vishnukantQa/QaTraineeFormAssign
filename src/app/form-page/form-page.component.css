@@ -1,0 +1,32 @@
+form{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+}
+input{
+    
+    height: 5vh;
+    color: #291D1F;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+    margin-left: 2vh;
+}
+
+label{
+    color:  #1A465E;
+}
+
+form{
+    margin-top: 5vh;
+    
+}
+button{
+    margin-top: 4vh;
+    background-color: teal;
+    color: #1A465E;
+    padding:2vh 3vh ;
+    border-radius: 20%;
+}
