@@ -1,9 +1,9 @@
 form{
-    display: flex;
+    
+    text-align: center;
+    display: flexbox;
     flex-wrap: wrap;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    max-width: 100%;
     
 }
 input{
