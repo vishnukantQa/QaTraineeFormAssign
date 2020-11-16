@@ -105,9 +105,10 @@ body {
       text-align: center;
       min-height: 10vh;
      padding: 1vh;
+     color: white;
      justify-content: center;
     align-items: center;
-      background-color: lightcoral;
+      background-color:black;
   }
   
   .sidenav .closebtn {
