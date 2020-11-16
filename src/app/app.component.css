@@ -53,12 +53,16 @@
 
 } */
 
+h1{
+    font-size: 5vh;
+}
+
 body {
     font-family: "Lato", sans-serif;
   }
 
   aside{
-      background-color: gray;
+     
       width:40px;
       height: 50px;
     
@@ -84,7 +88,7 @@ body {
   
   .sidenav a {
      
-    padding: 8px 8px 8px 32px;
+    padding: 2vh 2vh 2vh 4vh;
     text-decoration: none;
     font-size: 4vh;
     color: #818181;
@@ -109,7 +113,7 @@ body {
     position: absolute;
     top: 0;
     right: 25px;
-    font-size: 36px;
+    font-size: 5vh;
     margin-left: 50px;
   }
   .copy{
@@ -137,7 +141,7 @@ body {
     position: absolute;
     bottom: 0;
     display: flex;
-    height: 20px;
+    height: 15vh;
     background: black;
     width: 100%;
     color: white;
@@ -146,3 +150,18 @@ body {
     justify-content: center;
     align-items: center;
   }
+
+  @media screen and (max-width: 729px) {
+    section{
+        display: block;
+    }
+  }
+
+  @media screen and (max-width: 435px) {
+    .content{
+        flex-direction: row;
+    }
+  }
+
+
+  
