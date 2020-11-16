@@ -37,6 +37,9 @@ export class FormPageComponent implements OnInit {
     this.userDetailsService.setphone(this.phone);
     this.userDetailsService.setDob(this.Dob);
 
+    localStorage.setItem('name', form.value.name);
+    
+
     this.router.navigate(['userInfo']);
 
   }

@@ -11,8 +11,10 @@ export class AppComponent {
  
 
   openNav() {
-    document.getElementById("mySidenav").style.width = "15vw";
-    document.getElementById("aside").style.width="15vw";
+    document.getElementById("mySidenav").style.width = "100px";
+    document.getElementById("aside").style.width="100px";
+    document.getElementById("aside").style.height="80vh";
+
    document.getElementById("section").style.width="80vw";
   }
   

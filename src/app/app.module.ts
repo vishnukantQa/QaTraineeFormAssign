@@ -14,9 +14,10 @@ import { HomeComponent } from './home/home.component';
 
 const appRoutes:Routes=[
   {path:'',component:HomeComponent},
-  {path:'about-us',component:AboutUsComponent,canActivate:[AuthGuardService]},
+  {path:'about-us',component:AboutUsComponent},
   {path:'home',component:HomeComponent},
-  {path:'userInfo',component:UserInfoComponent}
+  {path:'form-page',component:FormPageComponent},
+  {path:'userInfo',component:UserInfoComponent,canActivate:[AuthGuardService]}
 ]
 
 @NgModule({

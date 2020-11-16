@@ -127,6 +127,7 @@ body {
      width: 80vw;
       margin-top: 3vh;
       margin-left: 1vh;
+      
   }
   
   @media screen and (max-height: 450px) {
@@ -155,6 +156,7 @@ body {
   @media screen and (max-width: 729px) {
     section{
         display: block;
+        margin-top: 8vh;
     }
   }
 
