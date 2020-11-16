@@ -1,5 +1,6 @@
+import { AuthGuardService } from './services/auth-guard.service';
 import { UserInfoComponent } from './user-info/user-info.component';
-import { Routes, RouterModule } from '@angular/router';
+import { Routes, RouterModule,CanActivate } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {FormsModule} from '@angular/forms'
@@ -13,7 +14,7 @@ import { HomeComponent } from './home/home.component';
 
 const appRoutes:Routes=[
   {path:'',component:HomeComponent},
-  {path:'about-us',component:AboutUsComponent},
+  {path:'about-us',component:AboutUsComponent,canActivate:[AuthGuardService]},
   {path:'home',component:HomeComponent},
   {path:'userInfo',component:UserInfoComponent}
 ]
