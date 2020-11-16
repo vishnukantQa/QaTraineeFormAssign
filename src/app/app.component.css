@@ -1,9 +1,9 @@
-.containers{
+/* .containers{
     display: flex;
     
     background-image: url(https://images.unsplash.com/photo-1470813740244-df37b8c1edcb?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60);
     
-    height: 100%;
+    min-height: 100%;
     
     flex-direction: column;
     justify-content: center;
@@ -12,6 +12,7 @@
     background-position: center;
   background-repeat: no-repeat;
   background-size:cover ;
+  overflow-wrap: break-word;
  
     
 }
@@ -23,13 +24,13 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    flex-wrap: wrap;
+    
     min-width: 60%;
     color: black;
     min-height: 80vh;
     border-radius: 5vh;
     padding: 1vw;
-    
+    overflow-wrap: break-word;
 }
 
 @media(max-width: 480px) {
@@ -44,10 +45,104 @@
     
         width: 100%;
         color: black;
-        height: 80vh;
+        min-height: 80vh;
         
     }
 
    
 
-}
+} */
+
+body {
+    font-family: "Lato", sans-serif;
+  }
+
+  aside{
+      background-color: gray;
+      width:40px;
+      height: 50px;
+    
+  }
+  
+  .sidenav {
+   
+    height: 100%;
+    width: 0;
+    top: 12vh;
+
+    position: fixed;
+    /* z-index: 1; */
+    
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+  }
+
+  
+  
+  .sidenav a {
+     
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 4vh;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+  }
+  
+  .sidenav a:hover {
+    color: #f1f1f1;
+  }
+
+  header{
+
+      text-align: center;
+      min-height: 10vh;
+     padding: 1vh;
+    
+      background-color: lightcoral;
+  }
+  
+  .sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+  }
+  .copy{
+      color: gray;
+  }
+
+  
+
+  section{
+     width: 80vw;
+      margin-top: 3vh;
+      margin-left: 1vh;
+  }
+  
+  @media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+  }
+
+  .content{
+      display: flex;
+  }
+
+  footer {
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    height: 20px;
+    background: black;
+    width: 100%;
+    color: white;
+    height: 20vh;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+  }

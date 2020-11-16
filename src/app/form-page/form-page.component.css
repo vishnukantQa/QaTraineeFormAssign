@@ -1,14 +1,13 @@
 form{
     
     text-align: center;
-    display: flexbox;
-    flex-wrap: wrap;
+   
     max-width: 100%;
     
 }
 input{
     
-    height: 5vh;
+    max-height: 5vh;
     color: #291D1F;
     margin-top: 2vh;
     margin-bottom: 2vh;

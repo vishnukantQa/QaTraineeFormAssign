@@ -7,8 +7,17 @@ div{
 p{
     margin-top: 4vh;
     color: darkslategrey;
+
+    
 }
 
 .color-res{
     color: darkgoldenrod;
+}
+
+.wrap{
+    display: flex;
+    overflow-wrap: break-word;
+    hyphens: auto;
+    word-wrap: wrap;
 }

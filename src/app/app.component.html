@@ -1,4 +1,4 @@
-<div class="containers">
+<!-- <div class="containers">
   <div class="contain-2">
     
     <h1 >Simple Form</h1>
@@ -8,5 +8,36 @@
   </div>
 
 
+</div> -->
+
+<header>
+
+  <h1>Heading title is known</h1>
+
+</header>
+<div class="content">
+  <aside id="aside">
+    <div id="mySidenav" class="sidenav">
+      <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">&times;</a>
+      <a routerLinkActive="home" routerLink="home">Home</a>
+      <a routerLink="about-us">About</a>
+      <a href="#">Clients</a>
+      <a href="#">Contact</a>
+    </div>
+    <span style="font-size:30px;cursor:pointer" class="btn" (click)="openNav() ">&#9776;</span>
+  </aside>
+
+
+<section role="main" class="section">
+  
+     <router-outlet></router-outlet>
+</section>
+
 </div>
 
+<footer>
+
+  <span class="copy"> © Media and Media which does nothing &nbsp; </span>
+
+  <p> this is the footer which also contain something </p>
+</footer>
