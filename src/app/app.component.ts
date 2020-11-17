@@ -13,7 +13,7 @@ export class AppComponent {
   openNav() {
     document.getElementById("mySidenav").style.width = "100px";
     document.getElementById("aside").style.width="100px";
-    document.getElementById("aside").style.minHeight="90vh";
+    document.getElementById("aside").style.height="90vh";
     document.getElementById("btn").style.display="none";
 
    document.getElementById("section").style.width="80vw";
