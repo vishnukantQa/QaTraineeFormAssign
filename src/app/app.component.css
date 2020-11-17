@@ -62,26 +62,26 @@ body {
   }
 
   aside{
-     
-      width:40px;
-      height: 50px;
-    
+     width: 25px;
+     height: 0;
+      
+    background-color: aqua;
   }
   
   .sidenav {
    
     height: 100%;
     width: 0;
-    top: 12vh;
+    /* top: 12vh; */
 
-    position: fixed;
+   
     /* z-index: 1; */
     
     left: 0;
     background-color: #111;
     overflow-x: hidden;
     transition: 0.5s;
-    padding-top: 60px;
+    
   }
 
   
@@ -112,7 +112,7 @@ body {
   }
   
   .sidenav .closebtn {
-    position: absolute;
+   
     top: 0;
     right: 25px;
     font-size: 5vh;
@@ -121,11 +121,14 @@ body {
   .copy{
       color: gray;
   }
-
+.btn{
+  margin-top: 0;
+}
   
 
   section{
      width: 80vw;
+     min-height: 70vh;
       margin-top: 3vh;
       margin-left: 1vh;
       
@@ -141,9 +144,11 @@ body {
   }
 
   footer {
-    position: absolute;
-    bottom: 0;
+   
+    
     display: flex;
+   
+    /* position: absolute; */
     height: 15vh;
     background: black;
     width: 100%;

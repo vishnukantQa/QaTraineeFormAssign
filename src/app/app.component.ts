@@ -13,15 +13,17 @@ export class AppComponent {
   openNav() {
     document.getElementById("mySidenav").style.width = "100px";
     document.getElementById("aside").style.width="100px";
-    document.getElementById("aside").style.height="80vh";
+    document.getElementById("aside").style.minHeight="90vh";
+    document.getElementById("btn").style.display="none";
 
    document.getElementById("section").style.width="80vw";
   }
   
   closeNav() {
     document.getElementById("mySidenav").style.width = "0";
-    document.getElementById("aside").style.width="3vw";
-    document.getElementById("aside").style.height="10vh"
+    document.getElementById("aside").style.width="25px";
+    document.getElementById("aside").style.height="0";
     document.getElementById("section").style.width="100%";
+    document.getElementById("btn").style.display="flex";
   }
 }

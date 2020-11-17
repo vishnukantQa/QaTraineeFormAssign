@@ -10,6 +10,11 @@ import { AppComponent } from './app.component';
 import { FormPageComponent } from './form-page/form-page.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { HomeComponent } from './home/home.component';
+import { KendoGridComponent } from './kendo-grid/kendo-grid.component';
+import { GridModule } from '@progress/kendo-angular-grid';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+
 
 
 const appRoutes:Routes=[
@@ -17,20 +22,24 @@ const appRoutes:Routes=[
   {path:'about-us',component:AboutUsComponent},
   {path:'home',component:HomeComponent},
   {path:'form-page',component:FormPageComponent},
-  {path:'userInfo',component:UserInfoComponent,canActivate:[AuthGuardService]}
+  {path:'userInfo',component:UserInfoComponent,canActivate:[AuthGuardService]},
+  {path:'products',component:KendoGridComponent}
 ]
 
 @NgModule({
   declarations: [
     AppComponent,
     FormPageComponent,
-    AboutUsComponent
+    AboutUsComponent,
+    KendoGridComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    GridModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
