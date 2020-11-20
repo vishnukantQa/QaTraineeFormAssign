@@ -128,9 +128,11 @@ body {
 
   section{
      width: 80vw;
-     min-height: 70vh;
+     min-height: 90vh;
       margin-top: 3vh;
       margin-left: 1vh;
+      margin-bottom: 20px;
+      
       
   }
   

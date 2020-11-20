@@ -10,7 +10,7 @@ export class CustomerDataService {
 
   
   getPostData(){
-    return this.http.get<Ipost[]>(this.url)
+    return this.http.get<Ipost[]>(this.url);
   }
 
 }

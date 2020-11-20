@@ -15,6 +15,11 @@ import { GridModule } from '@progress/kendo-angular-grid';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 
+import { HomeComponent as CrudHomeComponent } from './crud/home/home.component';
+import { DetailComponent } from './crud/detail/detail.component';
+import { CreateComponent } from './crud/create/create.component';
+import { UpdateComponent } from './crud/update/update.component';
+
 
 
 
@@ -24,7 +29,13 @@ const appRoutes:Routes=[
   {path:'home',component:HomeComponent},
   {path:'form-page',component:FormPageComponent},
   {path:'userInfo',component:UserInfoComponent,canActivate:[AuthGuardService]},
-  {path:'products',component:KendoGridComponent}
+  {path:'products',component:KendoGridComponent},
+  { path: 'crud', redirectTo: 'crud/home', pathMatch: 'full'},
+  { path: 'crud/home', component: CrudHomeComponent },
+  { path: 'crud/details/:id', component: DetailComponent },
+  { path: 'crud/create', component: CreateComponent },
+  { path: 'crud/update/:id', component: UpdateComponent } 
+
 ]
 
 @NgModule({
@@ -32,12 +43,18 @@ const appRoutes:Routes=[
     AppComponent,
     FormPageComponent,
     AboutUsComponent,
-    KendoGridComponent
+    KendoGridComponent,
+    HomeComponent,
+    DetailComponent,
+    CreateComponent,
+    UpdateComponent,
+    CrudHomeComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule,
+    RouterModule,
     RouterModule.forRoot(appRoutes),
     GridModule,
     BrowserAnimationsModule,

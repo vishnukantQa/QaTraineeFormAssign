@@ -1,0 +1,52 @@
+form{
+    
+    text-align: center;
+   
+    max-width: 100%;
+    
+}
+input{
+    
+    max-height: 5vh;
+    color: #291D1F;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+    margin-left: 2vh;
+}
+
+label{
+    color:  #1A465E;
+}
+
+form{
+    margin-top: 5vh;
+    
+}
+button{
+    margin-top: 4vh;
+    background-color: teal;
+    color: #1A465E;
+    padding:1vh 2vh ;
+    border-radius: 5%;
+    
+}
+
+.or{
+    margin-top: 1vh;
+    
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+#search{
+    margin-bottom: 20px;
+}
+
+.btn2{
+    background-color: teal;
+    color: #1A465E;
+    padding:2px ;
+    border-radius: 5%;
+    margin-left: 10px;
+}

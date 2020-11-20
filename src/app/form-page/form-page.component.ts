@@ -36,6 +36,7 @@ export class FormPageComponent implements OnInit {
     this.userDetailsService.setemail(this.email);
     this.userDetailsService.setphone(this.phone);
     this.userDetailsService.setDob(this.Dob);
+    
 
     localStorage.setItem('name', form.value.name);
     
