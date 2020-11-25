@@ -10,14 +10,11 @@ export class AuthService {
 
   public isAuthenticated(): boolean {
     let jwtHelper: JwtHelperService = new JwtHelperService();
-    console.log("i am run");
-    const token = localStorage.getItem('name');
+    
+    const token = localStorage.getItem('isLogin');
     console.log(token);
-    // console.log(token.valueOf("name"));
-    console.log("no error");
-    // Check whether the token is expired and return
-    // true or false
-    return token!=="" && token!==null;
+    
+    return  token==="true";
   //  return true;
   }
 }

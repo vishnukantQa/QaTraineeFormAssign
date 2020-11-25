@@ -2,6 +2,7 @@ import { NgForm } from '@angular/forms';
 import { CrudService } from './../../services/crud.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { SubscriptionLike } from 'rxjs';
 
 @Component({
   selector: 'app-create',
@@ -10,21 +11,25 @@ import { Router } from '@angular/router';
 })
 export class CreateComponent implements OnInit {
 
-
+  private subscription: SubscriptionLike;
   constructor(private crudService: CrudService, private router: Router) { }
 
   ngOnInit(): void {
-    
+
   }
   onSubmit(form: NgForm) {
-    console.log(form);
-    this.crudService.create(form.value).subscribe(res => {
+
+    this.subscription = this.crudService.create(form.value).subscribe(res => {
       console.log('Product created!')
       console.log(res);
-      this.router.navigateByUrl('crud/home')
+      this.router.navigateByUrl('main/crud/home')
     });
+  }
 
-  
+  ngOnDestroy() {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
+  }
 
-}
 }

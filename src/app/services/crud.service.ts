@@ -55,7 +55,7 @@ export class CrudService {
   delete(id){
     console.log(id);
     this.httpClient.delete(this.apiServer + '/delete/' + id);
-     this.route.navigateByUrl("crud/home");
+     this.route.navigateByUrl("main/crud");
     
   }
   errorHandler(error) {
@@ -70,6 +70,8 @@ export class CrudService {
      console.log(errorMessage);
      return throwError(errorMessage);
   }
+
+  
 }
 
 

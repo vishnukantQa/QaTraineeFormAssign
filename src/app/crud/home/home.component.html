@@ -1,78 +1,24 @@
-
-<h1>My Employees</h1>
-<button type="button" [routerLink]=" ['/crud/create/'] ">Create new Employee</button> 
-<kendo-grid [kendoGridBinding]="employees"
-[resizable]="true"
-[filterable]="true"
-[sortable]="{
+<h2>My Employees</h2>
+<button type="button" [routerLink]=" ['/main/crud/create'] ">Create new Employee</button>
+<kendo-grid [kendoGridBinding]="employees" [resizable]="true" [filterable]="true" [sortable]="{
     allowUnsort:true,
     mode:'multiple'
-}"
-[pageable]="true"
-[pageSize]="10"
+    }" [pageable]="true" [pageSize]="10" [height]="490">
+  <kendo-grid-column field="id" title="id" width="80">
+  </kendo-grid-column>
+  <kendo-grid-column field="employee_name" title="employee_name">
+  </kendo-grid-column>
+  <kendo-grid-column field="employee_salary" title="employee_salary">
+  </kendo-grid-column>
+  <kendo-grid-column field="employee_age" title="employee_age">
+  </kendo-grid-column>
+  <kendo-grid-column field="profile_image" title="profile_image" width="80">
+  </kendo-grid-column>
+  <kendo-grid-column field="id" title="Operation" width="120">
+    <ng-template kendoGridCellTemplate let-dataItem>
 
-[height]="410"
-
->
-    <kendo-grid-column field="id" title="id" width="80">
-    </kendo-grid-column>
-    <kendo-grid-column field="employee_name" title="employee_name" >
-    </kendo-grid-column>
-    <kendo-grid-column field="employee_salary" title="employee_salary">
-    </kendo-grid-column>
-    <kendo-grid-column field="employee_age" title="employee_age">
-    </kendo-grid-column>
-    <kendo-grid-column field="profile_image" title="profile_image" width="80">
-    </kendo-grid-column>
-    <kendo-grid-column field="id" title="Operation" width="120">
-        <ng-template kendoGridCellTemplate let-dataItem>
-            <!-- <input type="checkbox" [checked]="dataItem.Discontinued" disabled/> -->
-            <button type="button" [routerLink]=" ['/crud/update/',dataItem.id]" >Update</button> 
-            <button type="button" (click)="crudService.delete(dataItem.id)">Remove</button>
-        </ng-template>
-    </kendo-grid-column>
-    </kendo-grid>
-    <!-- <kendo-grid-column field="UnitsInStock" title="In stock" width="80">
-    </kendo-grid-column> -->
-    <!-- <kendo-grid-column field="Discontinued" title="Discontinued" width="120">
-        <ng-template kendoGridCellTemplate let-dataItem>
-            <input type="checkbox" [checked]="dataItem.Discontinued" disabled/>
-        </ng-template>
-    </kendo-grid-column> -->
-
-
-
-
-
-
-
-<!-- <div>
-    <h1>My Employees</h1>
-     <button type="button" [routerLink]=" ['/crud/create/'] ">Create new Employee</button> 
-    <table>
-        <thead>
-            <tr>
-                
-                <th>employee Id</th>
-                <th>Employee Name</th>
-                <th>Employee Salary</th>
-                <th>Employee Age</th>                            
-                <th>Profile Image</th>
-                
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let employee of employees">
-                <td>{{employee.id}}</td>
-                <td>{{employee.employee_name}}</td>
-                <td>{{employee.employee_salary}}</td>
-                <td>{{employee.employee_age}}</td>
-                <td>{{employee.profile_image}}</td>
-                <td>
-                     <button type="button" [routerLink]=" ['/crud/update/',employee.id]" >Update</button> 
-                    <button type="button" (click)="crudService.delete(employee.id)">Remove</button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</div> -->
+      <button type="button" [routerLink]=" ['/main/crud/update/',dataItem.id]">Update</button>
+      <button type="button" (click)="crudService.delete(dataItem.id)">Remove</button>
+    </ng-template>
+  </kendo-grid-column>
+</kendo-grid>

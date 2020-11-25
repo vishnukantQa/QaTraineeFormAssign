@@ -1,0 +1,52 @@
+<body>
+  <div class="container">
+    <div class="logo">Login</div>
+    <div class="login-item">
+      <form class="form form-login" (ngSubmit)="onSubmit(formElememt)" #formElememt="ngForm">
+        <div class="form-field">
+          <label class="user" for="name"><span class="hidden">Username</span></label>
+          <input id="login-username" type="text" class="form-input form-control" appNameValidator placeholder="Username"
+            required ngModel name="name" #userName="ngModel"
+            [ngClass]="{'is-invalid': (userName.touched || userName.dirty) && !userName.valid }">
+        </div>
+        
+        <div class="invalid-feedback">
+          <span *ngIf="userName.hasError('required') && (userName.touched || userName.dirty)">
+            User name required
+          </span>
+          <span *ngIf="userName.hasError('namevalidator') && (userName.touched || userName.dirty)">
+            user name is not valid
+          </span>
+        </div>
+        
+
+
+        <div class="form-field">
+          <label class="lock" for="password"><span class="hidden">Password</span></label>
+          <input id="login-password" type="password" class="form-input form-control" placeholder="Password"
+            appPasswordValidator ngModel required name="password" #userPassword="ngModel"
+            [ngClass]="{'is-invalid': (userPassword.touched || userPassword.dirty) && !userPassword.valid }">
+          
+        </div>
+
+        <div class="invalid-feedback">
+          <span *ngIf="userPassword.hasError('required') && (userPassword.touched || userPassword.dirty)">
+            Password is required.
+          </span>
+          <span *ngIf="userPassword.hasError('passwordvalidator') && (userPassword.touched || userPassword.dirty)">
+            min length should be 5
+          </span>
+        </div>
+
+        <div class="form-field">
+          <input type="submit" value="Log in">
+        </div>
+        <hr>
+        <div class="form-field">
+          <input type="submit" [routerLink]="['/signUp']" value="Sign Up">
+        </div>
+      </form>
+    </div>
+    <div class="colorRed" *ngIf="errorMessage">{{errorMessage}}</div>
+  </div>
+</body>

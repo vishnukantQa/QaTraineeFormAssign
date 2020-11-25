@@ -1,14 +1,7 @@
-div{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-}
+
 p{
     margin-top: 4vh;
     color: darkslategrey;
-
-    
 }
 
 .color-res{
@@ -16,8 +9,15 @@ p{
 }
 
 .wrap{
+    
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
     display: flex;
     overflow-wrap: break-word;
     hyphens: auto;
     word-wrap: wrap;
+    min-width: 80%;
+    background-color: white;
 }
+

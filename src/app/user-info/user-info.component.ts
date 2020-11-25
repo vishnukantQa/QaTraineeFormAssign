@@ -16,7 +16,7 @@ export class UserInfoComponent implements OnInit {
     this.name=userDetailsService.name;
     this.email=userDetailsService.email;
     this.phone=userDetailsService.phone;
-    this.Dob=userDetailsService.Dob;
+   
    }
 
   ngOnInit(): void {

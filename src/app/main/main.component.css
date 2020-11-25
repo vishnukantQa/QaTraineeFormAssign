@@ -1,0 +1,97 @@
+
+
+  *{
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    font-family: "Lato", sans-serif;
+    transition: background-color .5s;
+    background-color: #222222 ;
+    background: #16222A ;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to top, #16222A , #3A6073) ; /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to top, #16222A , #3A6073) ;
+  }
+  header{
+    display: flex;
+      min-height: 10vh;
+     padding: 1vh;
+     color: white;
+     justify-content: center;
+    align-items: center;
+      background-color:black;
+  }
+
+  .content {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    min-height:80vh ;
+    flex-direction: row;
+}
+  .sidenav {
+   
+    display: flex;
+    background-color: #111;
+    justify-content:start; 
+    flex-wrap: wrap;
+    align-items: center;  
+    overflow-x: hidden;
+    flex-direction: column;
+    width: 0;
+  }
+  
+  .sidenav a {
+    padding: 1vh 1vh 1vh 2vh;
+    text-decoration: none;
+    font-size: 20px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+  }
+  
+  .sidenav a:hover {
+    color: #f1f1f1;
+  }
+  
+  .sidenav .closebtn {
+    /* position: absolute;
+    top: 0; */
+    /* right: 25px; */
+    font-size: 36px;
+    margin-left: 50px;
+  }
+  
+  #main {
+    transition: margin-left .5s;
+    padding: 16px;
+    
+    display: flex;
+    flex-direction: column;
+  }
+  
+  @media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+  }
+
+  .copy{
+    color: gray;
+}
+
+
+  footer {
+   
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+    background: black;
+    width: 100%;
+    color: white;
+    min-height: 20vh;  
+    justify-content: center;
+    align-items: center;
+  }
