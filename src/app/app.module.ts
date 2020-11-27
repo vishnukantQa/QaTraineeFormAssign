@@ -27,6 +27,11 @@ import { NameValidatorDirective } from './directives/name-validator.directive';
 import { PasswordValidatorDirective } from './directives/password-validator.directive';
 import { EmailValidatorDirective } from './directives/email-validator.directive';
 import { PhoneValidatorDirective } from './directives/phone-validator.directive';
+import { LoginComponent } from './login/login.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { CommonModule } from '@angular/common'; 
+
+
 
 
 
@@ -35,23 +40,24 @@ const appRoutes: Routes = [
   { path: '', component: SignInComponent },
   { path: 'signUp', component: SignUpComponent },
   {
-    path: 'main', component: MainComponent,canActivate: [AuthGuardService],// canActivate: [AuthGuardService],
+    path: 'main', component: MainComponent,canActivate: [AuthGuardService],
     children: [
-      { path: "", component: HomeComponent },
-      { path: 'userInfo', component: UserInfoComponent, },//canActivate:[AuthGuardService]
+      { path: '', component: HomeComponent },
+      { path: 'userInfo', component: UserInfoComponent, },
       { path: 'about-us', component: AboutUsComponent },
       { path: 'products', component: KendoGridComponent },
       { path: 'crud', redirectTo: 'crud/home', pathMatch: 'full' },
       { path: 'crud/home', component: CrudHomeComponent },
       { path: 'crud/create', component: CreateComponent },
-      { path: 'crud/update/:id', component: UpdateComponent }
-
+      { path: 'crud/update/:id', component: UpdateComponent },
     ]
-  }]
+  },
+  {path:'**',component:SignInComponent,canActivate:[AuthGuardService]}]
 
 @NgModule({
   declarations: [
     AppComponent,
+    
 
     AboutUsComponent,
     KendoGridComponent,
@@ -61,18 +67,22 @@ const appRoutes: Routes = [
     CrudHomeComponent,
     SignUpComponent,
     SignInComponent,
+    UserInfoComponent,
     MainComponent,
     NameValidatorDirective,
     PasswordValidatorDirective,
     EmailValidatorDirective,
-    PhoneValidatorDirective
+    PhoneValidatorDirective,
+    LoginComponent,
+    DashboardComponent
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     FormsModule,
     AppRoutingModule,
     RouterModule,
-    RouterModule.forRoot(appRoutes),
+    RouterModule.forRoot(appRoutes,{ useHash: true }),
     GridModule,
     BrowserAnimationsModule,
     HttpClientModule,
@@ -82,3 +92,5 @@ const appRoutes: Routes = [
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+

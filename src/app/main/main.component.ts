@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.css']
 })
+
 export class MainComponent implements OnInit {
 
   constructor(public userDetailService:UserDetailsService) { }
@@ -30,21 +31,5 @@ export class MainComponent implements OnInit {
     document.getElementById("btn").style.display="inline";
   }
 
-  // openNav() {
-  //   document.getElementById("mySidenav").style.width = "100px";
-  //   document.getElementById("aside").style.width="100px";
-  //   document.getElementById("aside").style.height="100%";
-  //   document.getElementById("btn").style.display="none";
-
-  //  document.getElementById("section").style.width="80vw";
-  // }
   
-  // closeNav() {
-  //   document.getElementById("mySidenav").style.width = "0";
-  //   document.getElementById("aside").style.width="25px";
-  //   document.getElementById("aside").style.height="0";
-  //   document.getElementById("section").style.width="100%";
-  //   document.getElementById("btn").style.display="flex";
-  // }
-
 }

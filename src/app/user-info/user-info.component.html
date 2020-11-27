@@ -1,4 +1,4 @@
-
+<!-- 
 <div class="wrap">
     <p> Name</p>
     <p class="color-res"> {{this.name}}</p>
@@ -8,6 +8,16 @@
     <p  class="color-res">{{this.phone}}</p>
     <p>Date Of Birth</p>
     <p class="color-res">{{this.Dob}}</p>
+</div> -->
+<div class="wrap">
+<div class="card">
+    <img src={{imageUrl}} alt={{name}} style="width:100%; height:20%">
+    <h1>{{name}}</h1>
+    <p class="title">{{email}}</p>
+    <div class="title" *ngIf="phone!==0">{{phone}}</div>
+
+    <p><button>Contact</button></p>
+  </div>
 </div>
 
 
