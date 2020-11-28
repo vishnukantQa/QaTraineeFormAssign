@@ -28,7 +28,6 @@ import { PasswordValidatorDirective } from './directives/password-validator.dire
 import { EmailValidatorDirective } from './directives/email-validator.directive';
 import { PhoneValidatorDirective } from './directives/phone-validator.directive';
 import { LoginComponent } from './login/login.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
 import { CommonModule } from '@angular/common'; 
 
 
@@ -73,8 +72,7 @@ const appRoutes: Routes = [
     PasswordValidatorDirective,
     EmailValidatorDirective,
     PhoneValidatorDirective,
-    LoginComponent,
-    DashboardComponent
+    LoginComponent
   ],
   imports: [
     CommonModule,

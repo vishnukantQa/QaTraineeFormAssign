@@ -15,23 +15,24 @@ declare var FB: any;
   styleUrls: ['./sign-in.component.css']
 })
 export class SignInComponent implements OnInit {
-  @ViewChild('loginRef', { static: true }) loginElement: ElementRef;
+   @ViewChild('loginRef', { static: true }) loginElement: ElementRef;
 
   auth2: any;
-  
+
 
   constructor(private userDetailsService: UserDetailsService,
-    private router: Router,private route: ActivatedRoute,
-    private zone: NgZone) { }
+    private router: Router,
+    private zone: NgZone,
+    ) { }
   errorMessage: string;
 
   ngOnInit(): void {
     this.googleInitialize();
     this.facebookInitialize();
-    
+
   }
 
-  
+
   onSubmit(form: NgForm) {
 
     if (form && form.valid) {
@@ -47,7 +48,7 @@ export class SignInComponent implements OnInit {
   }
 
 
-//google authentication
+  //google authentication
   googleInitialize() {
     window['googleSDKLoaded'] = () => {
       window['gapi'].load('auth2', () => {
@@ -56,7 +57,7 @@ export class SignInComponent implements OnInit {
           cookie_policy: 'single_host_origin',
           scope: 'profile email'
         });
-        this.prepareLogin();//1089348138596-k8qpiu5iar8gn8j54tt25ejqg61e44m6.apps.googleusercontent.com
+         this.prepareLogin();//1089348138596-k8qpiu5iar8gn8j54tt25ejqg61e44m6.apps.googleusercontent.com
       });
     }
     (function (d, s, id) {
@@ -67,18 +68,22 @@ export class SignInComponent implements OnInit {
       fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'google-jssdk'));
   }
-
+t
   prepareLogin() {
     this.auth2.attachClickHandler(this.loginElement.nativeElement, {},
-      (googleUser) => {this.zone.run(() => {
-        let profile = googleUser.getBasicProfile();
+      (googleUser) => {
+        this.zone.run(() => {
+          console.log("thvhb hjvh hjvhjb ghvj",this.auth2.currentUser.get());
+          let profile = googleUser.getBasicProfile();
+          
+          this.userDetailsService.googleLoginDetail(profile);
+          this.userDetailsService.setauth2(this.auth2);
+          this.router.navigateByUrl("/main");
+        })
 
-        this.userDetailsService.googleLoginDetail(profile);
-        this.router.navigateByUrl("/main");
-      })
-      
       }, (error) => {
-        alert(JSON.stringify(error, undefined, 2));
+       
+        this.errorMessage=JSON.stringify(error,undefined,2);
       });
   }
 
@@ -104,29 +109,26 @@ export class SignInComponent implements OnInit {
   }
 
   facebookLogin() {
-  
     let dataLogin = this.userDetailsService;
-
-
     FB.login((response) => {
-      this.zone.run(()=>{
-      if (response.authResponse) {
-        FB.api('/me?fields=first_name, last_name, picture, email', function (response) {
-          console.log('Successful login for: ' + response.first_name);
+      this.zone.run(() => {
+        if (response.authResponse) {
+          FB.api('/me?fields=first_name, last_name, picture, email', function (response) {
+            console.log('Successful login for: ' + response.first_name);
+            dataLogin.getFBLoginDetails(response);
+            dataLogin.getFbVar(FB);
 
 
-          dataLogin.getFBLoginDetails(response);
-          dataLogin.getFbVar(FB);
-          
 
+          });
 
-        });
-
-      }
-      else {
-        console.log('User login failed');
-      }
-    })}, {
+        }
+        else {
+        
+          this.errorMessage="User Login Failed"
+        }
+      })
+    }, {
       scope: 'email',
       return_scopes: true
     });

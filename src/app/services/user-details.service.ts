@@ -1,5 +1,5 @@
 import { Router } from '@angular/router';
-import { Injectable } from '@angular/core';
+import { Injectable, NgZone } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
@@ -9,17 +9,18 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class UserDetailsService {
-
+  private _auth2: any;
+ 
   private fb: any;
   private _name: string = "";
   private _email: string = "";
   private _phone: number;
   private _password: string = "";
   private _imageUrl: string = "";
-
-  constructor(private router: Router, private httpClient: HttpClient) {
-
-  }
+ 
+  constructor(private router: Router, private httpClient: HttpClient, 
+    private zone:NgZone
+    ) {  }
 
 
   public get name() {
@@ -78,13 +79,39 @@ export class UserDetailsService {
     this._imageUrl = value;
   }
 
+ 
+  public setauth2(value: any) {
+    this._auth2 = value;
+  }
+
   logout() {
     if (this.fb !== null && this.fb !== undefined) {
-      this.fb.logout(function (response) {
+      this.fb.logout( (response)=> {
         console.log("you are logout");
-        // Person is now logged out
-      })
+        this.zone.run(()=>this.router.navigateByUrl("/"));
+      });
+      this.clearLocalStorage();
     }
+    else if (this._auth2!== null && this._auth2 !== undefined) {
+       
+        this._auth2.signOut().then( ()=> {
+          console.log('User signed out.');
+          this.zone.run(()=>{
+            this.router.navigateByUrl("/")}
+            );
+        });
+        this.clearLocalStorage();
+    }
+    else{
+      this.clearLocalStorage();
+      this.router.navigateByUrl("/");
+    }
+   
+
+   
+  }
+
+  clearLocalStorage(){
     localStorage.removeItem("isUserLogin");
     localStorage.removeItem("name");
     localStorage.removeItem("phone");
@@ -93,8 +120,8 @@ export class UserDetailsService {
     localStorage.removeItem("isUserSignUp");
     localStorage.removeItem("imageUrl")
     localStorage.removeItem("isLogin");
-    this.router.navigateByUrl("/");
   }
+
   signUp() {
     localStorage.setItem("isUserSignUp", "true");
     this.router.navigateByUrl("/");
