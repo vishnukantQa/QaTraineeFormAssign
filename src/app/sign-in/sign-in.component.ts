@@ -1,7 +1,7 @@
 import { UserDetailsService } from './../services/user-details.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, NgZone, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { ViewChild, ElementRef } from '@angular/core'
 
@@ -18,16 +18,20 @@ export class SignInComponent implements OnInit {
   @ViewChild('loginRef', { static: true }) loginElement: ElementRef;
 
   auth2: any;
+  
 
   constructor(private userDetailsService: UserDetailsService,
-    private router: Router) { }
+    private router: Router,private route: ActivatedRoute,
+    private zone: NgZone) { }
   errorMessage: string;
 
   ngOnInit(): void {
     this.googleInitialize();
     this.facebookInitialize();
-
+    
   }
+
+  
   onSubmit(form: NgForm) {
 
     if (form && form.valid) {
@@ -43,7 +47,7 @@ export class SignInComponent implements OnInit {
   }
 
 
-
+//google authentication
   googleInitialize() {
     window['googleSDKLoaded'] = () => {
       window['gapi'].load('auth2', () => {
@@ -52,7 +56,7 @@ export class SignInComponent implements OnInit {
           cookie_policy: 'single_host_origin',
           scope: 'profile email'
         });
-        this.prepareLogin();
+        this.prepareLogin();//1089348138596-k8qpiu5iar8gn8j54tt25ejqg61e44m6.apps.googleusercontent.com
       });
     }
     (function (d, s, id) {
@@ -66,16 +70,19 @@ export class SignInComponent implements OnInit {
 
   prepareLogin() {
     this.auth2.attachClickHandler(this.loginElement.nativeElement, {},
-      (googleUser) => {
+      (googleUser) => {this.zone.run(() => {
         let profile = googleUser.getBasicProfile();
 
         this.userDetailsService.googleLoginDetail(profile);
+        this.router.navigateByUrl("/main");
+      })
       
       }, (error) => {
         alert(JSON.stringify(error, undefined, 2));
       });
   }
 
+  //facebook authentication
   facebookInitialize() {
     (window as any).fbAsyncInit = function () {
       this.FB.init({
@@ -102,7 +109,7 @@ export class SignInComponent implements OnInit {
 
 
     FB.login((response) => {
-
+      this.zone.run(()=>{
       if (response.authResponse) {
         FB.api('/me?fields=first_name, last_name, picture, email', function (response) {
           console.log('Successful login for: ' + response.first_name);
@@ -110,6 +117,7 @@ export class SignInComponent implements OnInit {
 
           dataLogin.getFBLoginDetails(response);
           dataLogin.getFbVar(FB);
+          
 
 
         });
@@ -118,7 +126,7 @@ export class SignInComponent implements OnInit {
       else {
         console.log('User login failed');
       }
-    }, {
+    })}, {
       scope: 'email',
       return_scopes: true
     });

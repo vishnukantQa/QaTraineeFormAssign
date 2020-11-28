@@ -40,19 +40,19 @@ const appRoutes: Routes = [
   { path: '', component: SignInComponent },
   { path: 'signUp', component: SignUpComponent },
   {
-    path: 'main', component: MainComponent,canActivate: [AuthGuardService],
+     path: 'main', component: MainComponent,
     children: [
-      { path: '', component: HomeComponent },
-      { path: 'userInfo', component: UserInfoComponent, },
-      { path: 'about-us', component: AboutUsComponent },
-      { path: 'products', component: KendoGridComponent },
-      { path: 'crud', redirectTo: 'crud/home', pathMatch: 'full' },
-      { path: 'crud/home', component: CrudHomeComponent },
-      { path: 'crud/create', component: CreateComponent },
-      { path: 'crud/update/:id', component: UpdateComponent },
+      { path: '', component: HomeComponent ,canActivate: [AuthGuardService]},
+      { path: 'userInfo', component: UserInfoComponent,canActivate: [AuthGuardService] },
+      { path: 'about-us', component: AboutUsComponent,canActivate: [AuthGuardService] },
+      { path: 'products', component: KendoGridComponent,canActivate: [AuthGuardService] },
+      { path: 'crud', redirectTo: 'crud/home', pathMatch: 'full',canActivate: [AuthGuardService] },
+      { path: 'crud/home', component: CrudHomeComponent ,canActivate: [AuthGuardService]},
+      { path: 'crud/create', component: CreateComponent ,canActivate: [AuthGuardService] },
+      { path: 'crud/update/:id', component: UpdateComponent ,canActivate: [AuthGuardService]},
     ]
   },
-  {path:'**',component:SignInComponent,canActivate:[AuthGuardService]}]
+  {path:'**',component:SignInComponent}]
 
 @NgModule({
   declarations: [

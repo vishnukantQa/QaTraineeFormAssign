@@ -122,7 +122,8 @@ export class UserDetailsService {
     this.setemail(profile.getEmail());
     this.setimageUrl(profile.getImageUrl());
     localStorage.setItem("isLogin","true");
-    this.router.navigateByUrl("/main");
+    // this.router.navigateByUrl("/main",);
+    
   }
 
   getFBLoginDetails(response:any){
