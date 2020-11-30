@@ -3,7 +3,7 @@ import { UserInfoComponent } from './user-info/user-info.component';
 import { Routes, RouterModule, CanActivate } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -80,6 +80,7 @@ const appRoutes: Routes = [
     FormsModule,
     AppRoutingModule,
     RouterModule,
+    ReactiveFormsModule,
     RouterModule.forRoot(appRoutes,{ useHash: true }),
     GridModule,
     BrowserAnimationsModule,

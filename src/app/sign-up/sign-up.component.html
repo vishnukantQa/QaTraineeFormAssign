@@ -1,90 +1,72 @@
 <body>
-<div class="container">
+  <div class="container">
     <div class="logo">Sign Up</div>
     <div class="login-item">
-      <form action="" method="post" class="form form-login" (ngSubmit)="onSubmit(formElememt)" #formElememt="ngForm">
+      <form class="form form-login" [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
         <div class="form-field">
-          <label  for="Name">Name</label>
-          <input  type="text" class="form-input form-control" placeholder="Name" 
-          required 
-          appNameValidator
-          ngModel 
-          name="name" required
-          #userName="ngModel"
-          [ngClass]="{'is-invalid': (userName.touched || userName.dirty) && !userName.valid }">
-      
+          <label for="Name">Name</label>
+          <input type="text" class="form-input form-control" placeholder="Name" name="Name"
+            [formControlName]="'userName'"
+            [ngClass]="{'is-invalid': (signUpForm.get('userName').dirty || signUpForm.get('userName').touched ) && !signUpForm.get('userName').valid }">
+
         </div>
-        <div class="invalid-feedback">
-          <span *ngIf="userName.hasError('required') && (userName.touched || userName.dirty) ">
+        <div class="invalid-feedback" *ngIf="signUpForm.get('userName').dirty || signUpForm.get('userName').touched ">
+          <span *ngIf="signUpForm.get('userName').hasError('required')  ">
             User name required.
-         </span>
-         <span *ngIf="userName.hasError('namevalidator') && (userName.touched || userName.dirty)">
-          user name is not valid
-         </span>
-        </div>
-        <div class="form-field">
-          <label  for="Email">Email</label>
-          <input  type="text" class="form-input form-control" 
-          placeholder="Email id" 
-          appEmailValidator
-          required 
-          ngModel 
-          name="email"
-          #userEmail="ngModel"
-          [ngClass]="{'is-invalid': (userEmail.touched || userEmail.dirty) && !userEmail.valid }" >
-          
-        </div>
-        <div class="invalid-feedback">
-          <span *ngIf="userEmail.hasError('required') && (userEmail.touched || userEmail.dirty)">
-            Email required.
-         </span>
-         <span *ngIf="userEmail.hasError('emailvalidator') && (userEmail.touched || userEmail.dirty) ">
-          Email is not valid
-         </span>
+          </span>
+          <span *ngIf="signUpForm.get('userName').hasError('minlength')">
+            user name is not valid
+          </span>
         </div>
 
         <div class="form-field">
-          <label  for="phone">Phone</label>
-          <input type="number" class="form-input form-control" placeholder="Mobile Number" 
-          ngModel name="phone"
-          appPhoneValidator
-          required
-          minlength="10"
-          #phone="ngModel"
-          [ngClass]="{'is-invalid': (phone.touched || phone.dirty) && !phone.valid }">
-          
+          <label for="Email">Email</label>
+          <input type="text" class="form-input form-control" placeholder="Email id" [formControlName]="'email'"
+            name="email"
+            [ngClass]="{'is-invalid': (signUpForm.get('email').dirty || signUpForm.get('email').touched ) && !signUpForm.get('email').valid}">
+
         </div>
-        <div class="invalid-feedback">
-          <span *ngIf="phone.hasError('required') && (phone.touched || phone.dirty)">
+        <div class="invalid-feedback" *ngIf="signUpForm.get('email').dirty || signUpForm.get('email').touched ">
+          <span *ngIf="signUpForm.get('email').hasError('required')  ">
+            Email required.
+          </span>
+          <span *ngIf="signUpForm.get('email').hasError('pattern')">
+            Email is not valid
+          </span>
+        </div>
+
+        <div class="form-field">
+          <label for="phone">Phone</label>
+          <input type="number" class="form-input form-control" placeholder="Mobile Number" [formControlName]="'phone'"
+            name="phone"
+            [ngClass]="{'is-invalid': (signUpForm.get('phone').dirty || signUpForm.get('phone').touched ) && !signUpForm.get('phone').valid}">
+
+        </div>
+        <div class="invalid-feedback" *ngIf="signUpForm.get('phone').dirty || signUpForm.get('phone').touched">
+          <span *ngIf="signUpForm.get('phone').hasError('required')">
             Number required.
-         </span>
-         <span *ngIf="phone.hasError('phonevalidator') && (phone.touched || phone.dirty)">
-          Number is not valid
-         </span>
+          </span>
+          <span *ngIf="signUpForm.get('phone').hasError('phoneError')">
+            Number is not valid
+          </span>
         </div>
         <div class="form-field">
           <label for="password">Password</label>
-          <input type="password" class="form-input" 
-          placeholder="Password" 
-          required 
-          appPasswordValidator
-          ngModel 
-          name="password"
-          minlength=5
-          #userPassword="ngModel"
-          [ngClass]="{'is-invalid': (userPassword.touched || userPassword.dirty) && !userPassword.valid  }">
-         
+          <input type="password" class="form-input form-control"placeholder="Password" [formControlName]="'password'"
+            name="password"
+            [ngClass]="{'is-invalid': (signUpForm.get('password').dirty || signUpForm.get('password').touched ) && !signUpForm.get('password').valid}">
+          
         </div>
-        <div class="invalid-feedback">
-          <span *ngIf="userPassword.hasError('required') && (userPassword.touched || userPassword.dirty)">
+        <div class="invalid-feedback" *ngIf="signUpForm.get('password').dirty || signUpForm.get('password').touched">
+          <span *ngIf="signUpForm.get('password').hasError('required')">
             password required.
-         </span>
-         <span *ngIf="userPassword.hasError('passwordvalidator') && (userPassword.touched || userPassword.dirty)">
-          password should be 5 character long
-         </span>
+          </span>
+          <span *ngIf="signUpForm.get('password').hasError('minlength')">
+            password should be 5 character long
+          </span>
         </div>
         <div class="form-field">
-          <input type="submit"  value="Sign Up">
+          <input type="submit" value="Sign Up">
         </div>
         <p>{{errorMessage}}</p>
       </form>

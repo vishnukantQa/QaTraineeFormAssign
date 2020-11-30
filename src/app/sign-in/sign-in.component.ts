@@ -1,6 +1,6 @@
 import { UserDetailsService } from './../services/user-details.service';
-import { Component, NgZone, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { AfterViewInit, Component, NgZone, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { ViewChild, ElementRef } from '@angular/core'
@@ -14,38 +14,53 @@ declare var FB: any;
   templateUrl: './sign-in.component.html',
   styleUrls: ['./sign-in.component.css']
 })
-export class SignInComponent implements OnInit {
-   @ViewChild('loginRef', { static: true }) loginElement: ElementRef;
+export class SignInComponent implements OnInit,AfterViewInit {
+   @ViewChild('loginRef' ,{static:true}) loginElement: ElementRef;
 
   auth2: any;
+  signInForm: FormGroup;
 
 
   constructor(private userDetailsService: UserDetailsService,
     private router: Router,
     private zone: NgZone,
-    ) { }
+    private readonly fb: FormBuilder
+    ) { 
+      this.signInForm = this.fb.group({
+        userName: ['',[Validators.required, Validators.minLength(5)]],      
+        password: ['',[Validators.required, Validators.minLength(5)]]
+      });
+    }
   errorMessage: string;
 
   ngOnInit(): void {
-    this.googleInitialize();
+   
     this.facebookInitialize();
 
   }
 
-
-  onSubmit(form: NgForm) {
-
-    if (form && form.valid) {
-      if (this.userDetailsService.match(form)) {
-        return null
-      } else {
-        this.errorMessage = "Username or password is wrong";
-      }
-
-    } else {
-      this.errorMessage = 'correctly filled the marked detail';
-    }
+  ngAfterViewInit(){
+    this.googleInitialize();
   }
+
+  
+
+
+  onSubmit(){
+    if (this.signInForm.valid) {
+      if (this.userDetailsService.match(this.signInForm.getRawValue())) {
+              return null
+            } else {
+              this.errorMessage = "Username or password is wrong";
+            }
+      
+      console.log(this.signInForm.getRawValue());
+  } else {
+    this.errorMessage = 'correctly filled the above details';
+  }
+}
+  
+
 
 
   //google authentication
@@ -57,7 +72,7 @@ export class SignInComponent implements OnInit {
           cookie_policy: 'single_host_origin',
           scope: 'profile email'
         });
-         this.prepareLogin();//1089348138596-k8qpiu5iar8gn8j54tt25ejqg61e44m6.apps.googleusercontent.com
+        this.prepareLogin();//1089348138596-k8qpiu5iar8gn8j54tt25ejqg61e44m6.apps.googleusercontent.com
       });
     }
     (function (d, s, id) {
@@ -70,9 +85,11 @@ export class SignInComponent implements OnInit {
   }
 t
   prepareLogin() {
+    console.log("waiting for click")
     this.auth2.attachClickHandler(this.loginElement.nativeElement, {},
       (googleUser) => {
         this.zone.run(() => {
+          console.log("click");
           console.log("thvhb hjvh hjvhjb ghvj",this.auth2.currentUser.get());
           let profile = googleUser.getBasicProfile();
           
@@ -85,6 +102,7 @@ t
        
         this.errorMessage=JSON.stringify(error,undefined,2);
       });
+  
   }
 
   //facebook authentication

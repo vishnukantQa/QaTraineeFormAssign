@@ -2,38 +2,41 @@
   <div class="container">
     <div class="logo">Login</div>
     <div class="login-item">
-      <form class="form form-login" (ngSubmit)="onSubmit(formElememt)" #formElememt="ngForm">
+      <form class="form form-login" [formGroup]="signInForm" (ngSubmit)="onSubmit()">
         <div class="form-field">
           <label class="user" for="name"><span class="hidden">Username</span></label>
-          <input id="login-username" type="text" class="form-input form-control" appNameValidator placeholder="Username"
-            required ngModel name="name" #userName="ngModel"
-            [ngClass]="{'is-invalid': (userName.touched || userName.dirty) && !userName.valid }">
+          <input id="login-username" [formControlName]="'userName'" type="text" class="form-input form-control"
+            placeholder="Username" name="name"
+            [ngClass]="{'is-invalid': (signInForm.get('userName').dirty || signInForm.get('userName').touched ) && !signInForm.get('userName').valid}">
+          <!-- required ngModel-->
+
         </div>
-        
-        <div class="invalid-feedback">
-          <span *ngIf="userName.hasError('required') && (userName.touched || userName.dirty)">
+
+        <div class="invalid-feedback" *ngIf="signInForm.get('userName').dirty || signInForm.get('userName').touched ">
+          <span *ngIf="signInForm.get('userName').hasError('required')">
             User name required
           </span>
-          <span *ngIf="userName.hasError('namevalidator') && (userName.touched || userName.dirty)">
+          <span *ngIf="signInForm.get('userName').hasError('minlength')">
             user name is not valid
           </span>
         </div>
-        
+
 
 
         <div class="form-field">
           <label class="lock" for="password"><span class="hidden">Password</span></label>
-          <input id="login-password" type="password" class="form-input form-control" placeholder="Password"
-            appPasswordValidator ngModel required name="password" #userPassword="ngModel"
-            [ngClass]="{'is-invalid': (userPassword.touched || userPassword.dirty) && !userPassword.valid }">
-          
+          <input id="login-password" [formControlName]="'password'" type="password" class="form-input form-control"
+            placeholder="Password"
+            [ngClass]="{'is-invalid': (signInForm.get('password').dirty || signInForm.get('password').touched ) && !signInForm.get('password').valid}">
+
+
         </div>
 
-        <div class="invalid-feedback">
-          <span *ngIf="userPassword.hasError('required') && (userPassword.touched || userPassword.dirty)">
+        <div class="invalid-feedback" *ngIf="signInForm.get('password').dirty || signInForm.get('password').touched ">
+          <span *ngIf="signInForm.get('password').hasError('required')">
             Password is required.
           </span>
-          <span *ngIf="userPassword.hasError('passwordvalidator') && (userPassword.touched || userPassword.dirty)">
+          <span *ngIf="signInForm.get('password').hasError('minlength')">
             min length should be 5
           </span>
         </div>
@@ -46,10 +49,12 @@
           <input type="submit" [routerLink]="['/signUp']" value="Sign Up">
         </div>
         <div class="form-button">
-          <button type="button"  class="login-Btn"  #loginRef><img class="social-btn-icon" alt="Login with Google" src="https://hrcdn.net/fcore/assets/google-colored-20b8216731.svg"></button>
-          <button type="button" (click)="facebookLogin()"><img src="https://cdn2.iconfinder.com/data/icons/social-media-2285/512/1_Facebook_colored_svg_copy-128.png"></button>
+          <button type="button" class="login-Btn" #loginRef><img class="social-btn-icon" alt="Login with Google"
+              src="https://hrcdn.net/fcore/assets/google-colored-20b8216731.svg"></button>
+          <button type="button" (click)="facebookLogin()"><img
+              src="https://cdn2.iconfinder.com/data/icons/social-media-2285/512/1_Facebook_colored_svg_copy-128.png"></button>
         </div>
-      
+
       </form>
     </div>
     <div class="colorRed" *ngIf="errorMessage">{{errorMessage}}</div>

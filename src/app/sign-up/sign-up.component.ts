@@ -1,7 +1,7 @@
 import { UserDetailsService } from './../services/user-details.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { NgForm } from '@angular/forms';
+import { FormBuilder, FormGroup, NgForm, Validators, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-sign-up',
@@ -9,12 +9,16 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./sign-up.component.css']
 })
 export class SignUpComponent implements OnInit {
-
+  signUpForm: FormGroup;
   constructor(private userDetailsService: UserDetailsService,
-    private router: Router) {
-    // if (localStorage.getItem('isUserLogin') == "true") {
-    //   this.router.navigate(['home']);
-    // }
+    private router: Router,
+    private readonly fb: FormBuilder) {
+    this.signUpForm = this.fb.group({
+      userName: ['', [Validators.required, Validators.minLength(5)]],
+      email: ['', [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
+      phone: ['', [Validators.required, this.ValidatorPhone]],
+      password: ['', [Validators.required, Validators.minLength(5)]]
+    });
   }
 
   errorMessage: String;
@@ -23,18 +27,50 @@ export class SignUpComponent implements OnInit {
 
   }
 
-  onSubmit(form: NgForm) {
-    if (form && form.valid) {
-    this.userDetailsService.setname(form.value.name);
-    this.userDetailsService.setemail(form.value.email);
-    this.userDetailsService.setphone(form.value.phone);
-    this.userDetailsService.setpassword(form.value.password)
-    this.userDetailsService.signUp();
-    } else {
-      this.errorMessage = 'Please Fill the Marked Field Correctly';
-    }
-    
+  // onSubmit(form: NgForm) {
+  //   if (form && form.valid) {
+  //   this.userDetailsService.setname(form.value.name);
+  //   this.userDetailsService.setemail(form.value.email);
+  //   this.userDetailsService.setphone(form.value.phone);
+  //   this.userDetailsService.setpassword(form.value.password)
+  //   this.userDetailsService.signUp();
+  //   } else {
+  //     this.errorMessage = 'Please Fill the Marked Field Correctly';
+  //   }
 
+
+  // }
+
+  ValidatorPhone(fc: FormControl) {
+    const value = String(fc.value);
+    if (value != null && value !== '') {
+      console.log(value.length);
+      let isValid = value.length == 10;
+      if (isValid) {
+        return null;
+      } else {
+        return { phoneError: 'number is not valid' }
+      }
+    } else {
+      return null;
+    }
+  }
+
+
+
+
+  onSubmit() {
+    if (this.signUpForm.valid) {
+      let data = this.signUpForm.getRawValue();
+      this.userDetailsService.setname(data.userName);
+      this.userDetailsService.setemail(data.email);
+      this.userDetailsService.setphone(data.phone);
+      this.userDetailsService.setpassword(data.password);
+      this.userDetailsService.signUp();
+
+    } else {
+      this.errorMessage = 'correctly filled the above details';
+    }
   }
 
 }

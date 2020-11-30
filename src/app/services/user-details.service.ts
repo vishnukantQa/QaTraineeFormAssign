@@ -10,17 +10,17 @@ import { map } from 'rxjs/operators';
 })
 export class UserDetailsService {
   private _auth2: any;
- 
+
   private fb: any;
   private _name: string = "";
   private _email: string = "";
   private _phone: number;
   private _password: string = "";
   private _imageUrl: string = "";
- 
-  constructor(private router: Router, private httpClient: HttpClient, 
-    private zone:NgZone
-    ) {  }
+
+  constructor(private router: Router, private httpClient: HttpClient,
+    private zone: NgZone
+  ) { }
 
 
   public get name() {
@@ -79,39 +79,40 @@ export class UserDetailsService {
     this._imageUrl = value;
   }
 
- 
+
   public setauth2(value: any) {
     this._auth2 = value;
   }
 
   logout() {
     if (this.fb !== null && this.fb !== undefined) {
-      this.fb.logout( (response)=> {
+      this.fb.logout((response) => {
         console.log("you are logout");
-        this.zone.run(()=>this.router.navigateByUrl("/"));
+        this.zone.run(() => this.router.navigateByUrl("/"));
       });
       this.clearLocalStorage();
     }
-    else if (this._auth2!== null && this._auth2 !== undefined) {
-       
-        this._auth2.signOut().then( ()=> {
-          console.log('User signed out.');
-          this.zone.run(()=>{
-            this.router.navigateByUrl("/")}
-            );
-        });
-        this.clearLocalStorage();
+    else if (this._auth2 !== null && this._auth2 !== undefined) {
+
+      this._auth2.signOut().then(() => {
+        console.log('User signed out.');
+        this.zone.run(() => {
+          this.router.navigateByUrl("/")
+        }
+        );
+      });
+      this.clearLocalStorage();
     }
-    else{
+    else {
       this.clearLocalStorage();
       this.router.navigateByUrl("/");
     }
-   
 
-   
+
+
   }
 
-  clearLocalStorage(){
+  clearLocalStorage() {
     localStorage.removeItem("isUserLogin");
     localStorage.removeItem("name");
     localStorage.removeItem("phone");
@@ -127,12 +128,12 @@ export class UserDetailsService {
     this.router.navigateByUrl("/");
   }
 
-  match(form: NgForm) {
+  match(data: any) {
 
     let isUserSignUp = localStorage.getItem("isUserSignUp");
-    if (form.value.name !== "") {
-      if (isUserSignUp === "true" && String(form.value.name).toLocaleUpperCase === this.name.toLocaleUpperCase && String(form.value.password) === this.password) {
-       this.setLogin();
+    if (data.userName !== "") {
+      if (isUserSignUp === "true" && String(data.userName).toLocaleUpperCase === this.name.toLocaleUpperCase && String(data.password) === this.password) {
+        this.setLogin();
 
         this.router.navigateByUrl("/main");
       } else {
@@ -154,7 +155,7 @@ export class UserDetailsService {
 
   getFBLoginDetails(response: any) {
 
-   this.setLogin();
+    this.setLogin();
     this.setname(response.first_name + response.last_name);
     this.setemail(response.email);
     this.setimageUrl(response.picture.data.url);
@@ -165,8 +166,8 @@ export class UserDetailsService {
     this.fb = fb;
   }
 
-  setLogin(){
-    localStorage.setItem("isLogin","true");
+  setLogin() {
+    localStorage.setItem("isLogin", "true");
   }
 
 
