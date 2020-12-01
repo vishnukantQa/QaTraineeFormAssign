@@ -50,12 +50,30 @@
             Number is not valid
           </span>
         </div>
+
+        <div class="form-field">
+          <label for="Dob">D.O.B</label>
+          <input type="date" class="form-input form-control" [formControlName]="'Dob'"
+            name="Dob"
+            [ngClass]="{'is-invalid': (signUpForm.get('Dob').dirty || signUpForm.get('Dob').touched )
+             && !signUpForm.get('Dob').valid}">
+
+        </div>
+        <div class="invalid-feedback" *ngIf="signUpForm.get('Dob').dirty || signUpForm.get('Dob').touched">
+          <span *ngIf="signUpForm.get('Dob').hasError('required')">
+            D.O.B required.
+          </span>
+          <!-- <span *ngIf="signUpForm.get('Dob').hasError('Dob')">
+            D.O>B is not valid
+          </span> -->
+        </div>
+
         <div class="form-field">
           <label for="password">Password</label>
-          <input type="password" class="form-input form-control"placeholder="Password" [formControlName]="'password'"
+          <input type="password" class="form-input form-control" placeholder="Password" [formControlName]="'password'"
             name="password"
             [ngClass]="{'is-invalid': (signUpForm.get('password').dirty || signUpForm.get('password').touched ) && !signUpForm.get('password').valid}">
-          
+
         </div>
         <div class="invalid-feedback" *ngIf="signUpForm.get('password').dirty || signUpForm.get('password').touched">
           <span *ngIf="signUpForm.get('password').hasError('required')">

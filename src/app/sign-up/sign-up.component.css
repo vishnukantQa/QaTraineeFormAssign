@@ -64,7 +64,7 @@ body {
   }
   
   .form input[type="password"], .form input[type="text"], .form input[type="submit"] ,
-  .form input[type="number"] {
+  .form input[type="number"], .form input[type="date"] {
     width: 100%;
   }
   
@@ -72,7 +72,8 @@ body {
   .form-login input[type="text"],
   .form-login input[type="password"],
   .form-login input[type="submit"],
-  .form-login input[type="number"] {
+  .form-login input[type="number"],
+  .form-login input[type="date"] {
     border-radius: 0.25rem;
     padding: 7px;
     color: #25394e;  
@@ -86,12 +87,14 @@ body {
     padding-right: 1.25rem;
   }
   
-  .form-login input[type="text"], .form-login input[type="password"], .form-login input[type="number"] {
+  .form-login input[type="text"], .form-login input[type="password"], .form-login input[type="number"] ,
+  .form-login input[type="date"]{
     background-color: #ffffff;
     border-bottom-left-radius: 0;
     border-top-left-radius: 0;
   }
-  .form-login input[type="text"]:focus, .form-login input[type="text"]:hover, .form-login input[type="password"]:focus, .form-login input[type="password"]:hover {
+  .form-login input[type="text"]:focus, .form-login input[type="text"]:hover, .form-login input[type="password"]:focus, .form-login input[type="password"]:hover ,
+  .form-login input[type="date"]:focus, .form-login input[type="date"]:hover{
     background-color: #eeeeee;
   }
   .form-login input[type="submit"] {

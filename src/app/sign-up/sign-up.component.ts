@@ -10,6 +10,7 @@ import { FormBuilder, FormGroup, NgForm, Validators, FormControl } from '@angula
 })
 export class SignUpComponent implements OnInit {
   signUpForm: FormGroup;
+  profile:any;
   constructor(private userDetailsService: UserDetailsService,
     private router: Router,
     private readonly fb: FormBuilder) {
@@ -17,7 +18,8 @@ export class SignUpComponent implements OnInit {
       userName: ['', [Validators.required, Validators.minLength(5)]],
       email: ['', [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
       phone: ['', [Validators.required, this.ValidatorPhone]],
-      password: ['', [Validators.required, Validators.minLength(5)]]
+      password: ['', [Validators.required, Validators.minLength(5)]],
+      Dob:['',[Validators.required]]
     });
   }
 
@@ -27,19 +29,6 @@ export class SignUpComponent implements OnInit {
 
   }
 
-  // onSubmit(form: NgForm) {
-  //   if (form && form.valid) {
-  //   this.userDetailsService.setname(form.value.name);
-  //   this.userDetailsService.setemail(form.value.email);
-  //   this.userDetailsService.setphone(form.value.phone);
-  //   this.userDetailsService.setpassword(form.value.password)
-  //   this.userDetailsService.signUp();
-  //   } else {
-  //     this.errorMessage = 'Please Fill the Marked Field Correctly';
-  //   }
-
-
-  // }
 
   ValidatorPhone(fc: FormControl) {
     const value = String(fc.value);
@@ -62,6 +51,7 @@ export class SignUpComponent implements OnInit {
   onSubmit() {
     if (this.signUpForm.valid) {
       let data = this.signUpForm.getRawValue();
+      this.profile=data;
       this.userDetailsService.setname(data.userName);
       this.userDetailsService.setemail(data.email);
       this.userDetailsService.setphone(data.phone);

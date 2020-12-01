@@ -4,30 +4,31 @@
     <h1>Template</h1>
   </header>
 
-<div class="content">
+  <div class="content">
 
-  <aside id="mySidenav" class="sidenav">
-    <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">&times;</a>
-    <a routerLinkActive="main" routerLink="/main">Home</a>
-    <a routerLink="/main/about-us">About</a>
-    <a routerLink="/main/userInfo">Profile</a>
-    <a routerLink="/main/products">Product</a>
-    <a routerLink="/main/crud">Crud</a>
-    <a (click)="userDetailService.logout()">LogOut</a>
-    
-  </aside>
+    <aside id="mySidenav" class="sidenav">
+      <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">&times;</a>
+      <a routerLinkActive="main" routerLink="/main">Home</a>
+      <a routerLink="/main/about-us">About</a>
+      <a routerLink="/main/userInfo">Profile</a>
+      <a routerLink="/main/products">Product</a>
+      <a routerLink="/main/crud">Crud</a>
+      <a routerLink="/main/myinfo">myprofile</a>
+      <a (click)="userDetailService.logout()">LogOut</a>
 
-  <main id="main">
-    <span id="btn" style="font-size:30px;cursor:pointer" (click)="openNav()">&#9776;</span>
-    <router-outlet></router-outlet>
-  </main>
-  
-  
-  
-</div>
+    </aside>
+
+    <main id="main">
+      <span id="btn" style="font-size:30px;cursor:pointer" (click)="openNav()">&#9776;</span>
+      <router-outlet></router-outlet>
+    </main>
+
+
+
+  </div>
 
   <footer>
-  <p class="copy"> © Media and Media which does nothing &nbsp; </p>
+    <p class="copy"> © Media and Media which does nothing &nbsp; </p>
     <p class="copy"> this is the footer which also contain something </p>
   </footer>
 </body>

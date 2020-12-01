@@ -14,8 +14,8 @@ declare var FB: any;
   templateUrl: './sign-in.component.html',
   styleUrls: ['./sign-in.component.css']
 })
-export class SignInComponent implements OnInit,AfterViewInit {
-   @ViewChild('loginRef' ,{static:true}) loginElement: ElementRef;
+export class SignInComponent implements OnInit, AfterViewInit {
+  @ViewChild('loginRef', { static: false }) loginElement: ElementRef;
 
   auth2: any;
   signInForm: FormGroup;
@@ -25,41 +25,41 @@ export class SignInComponent implements OnInit,AfterViewInit {
     private router: Router,
     private zone: NgZone,
     private readonly fb: FormBuilder
-    ) { 
-      this.signInForm = this.fb.group({
-        userName: ['',[Validators.required, Validators.minLength(5)]],      
-        password: ['',[Validators.required, Validators.minLength(5)]]
-      });
-    }
+  ) {
+    this.signInForm = this.fb.group({
+      userName: ['', [Validators.required, Validators.minLength(5)]],
+      password: ['', [Validators.required, Validators.minLength(5)]]
+    });
+  }
   errorMessage: string;
 
   ngOnInit(): void {
-   
+
     this.facebookInitialize();
-
-  }
-
-  ngAfterViewInit(){
     this.googleInitialize();
+
   }
 
-  
+  ngAfterViewInit() {
+
+  }
 
 
-  onSubmit(){
+
+
+  onSubmit() {
     if (this.signInForm.valid) {
       if (this.userDetailsService.match(this.signInForm.getRawValue())) {
-              return null
-            } else {
-              this.errorMessage = "Username or password is wrong";
-            }
-      
-      console.log(this.signInForm.getRawValue());
-  } else {
-    this.errorMessage = 'correctly filled the above details';
+        return null
+      } else {
+        this.errorMessage = "Username or password is wrong";
+      }
+
+    } else {
+      this.errorMessage = 'correctly filled the above details';
+    }
   }
-}
-  
+
 
 
 
@@ -72,6 +72,7 @@ export class SignInComponent implements OnInit,AfterViewInit {
           cookie_policy: 'single_host_origin',
           scope: 'profile email'
         });
+        console.log("prepare Login");
         this.prepareLogin();//1089348138596-k8qpiu5iar8gn8j54tt25ejqg61e44m6.apps.googleusercontent.com
       });
     }
@@ -83,26 +84,26 @@ export class SignInComponent implements OnInit,AfterViewInit {
       fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'google-jssdk'));
   }
-t
+  
   prepareLogin() {
     console.log("waiting for click")
     this.auth2.attachClickHandler(this.loginElement.nativeElement, {},
       (googleUser) => {
         this.zone.run(() => {
           console.log("click");
-          console.log("thvhb hjvh hjvhjb ghvj",this.auth2.currentUser.get());
+          console.log("thvhb hjvh hjvhjb ghvj", this.auth2.currentUser.get());
           let profile = googleUser.getBasicProfile();
-          
+
           this.userDetailsService.googleLoginDetail(profile);
           this.userDetailsService.setauth2(this.auth2);
           this.router.navigateByUrl("/main");
         })
 
       }, (error) => {
-       
-        this.errorMessage=JSON.stringify(error,undefined,2);
+
+        this.errorMessage = JSON.stringify(error, undefined, 2);
       });
-  
+
   }
 
   //facebook authentication
@@ -135,15 +136,13 @@ t
             console.log('Successful login for: ' + response.first_name);
             dataLogin.getFBLoginDetails(response);
             dataLogin.getFbVar(FB);
-
-
-
+            
           });
 
         }
         else {
-        
-          this.errorMessage="User Login Failed"
+
+          this.errorMessage = "User Login Failed"
         }
       })
     }, {

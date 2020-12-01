@@ -1,3 +1,4 @@
+import { ChildComponent } from './decorator/child/child.component';
 import { AuthGuardService } from './services/auth-guard.service';
 import { UserInfoComponent } from './user-info/user-info.component';
 import { Routes, RouterModule, CanActivate } from '@angular/router';
@@ -28,35 +29,37 @@ import { PasswordValidatorDirective } from './directives/password-validator.dire
 import { EmailValidatorDirective } from './directives/email-validator.directive';
 import { PhoneValidatorDirective } from './directives/phone-validator.directive';
 import { LoginComponent } from './login/login.component';
-import { CommonModule } from '@angular/common'; 
-
-
-
-
+import { CommonModule } from '@angular/common';
+import { ParentComponent } from './decorator/parent/parent.component';
+import { DobDirective } from './directives/dob.directive';
 
 
 const appRoutes: Routes = [
   { path: '', component: SignInComponent },
   { path: 'signUp', component: SignUpComponent },
   {
-     path: 'main', component: MainComponent,
+    path: 'main', component: MainComponent,
     children: [
-      { path: '', component: HomeComponent ,canActivate: [AuthGuardService]},
-      { path: 'userInfo', component: UserInfoComponent,canActivate: [AuthGuardService] },
-      { path: 'about-us', component: AboutUsComponent,canActivate: [AuthGuardService] },
-      { path: 'products', component: KendoGridComponent,canActivate: [AuthGuardService] },
-      { path: 'crud', redirectTo: 'crud/home', pathMatch: 'full',canActivate: [AuthGuardService] },
-      { path: 'crud/home', component: CrudHomeComponent ,canActivate: [AuthGuardService]},
-      { path: 'crud/create', component: CreateComponent ,canActivate: [AuthGuardService] },
-      { path: 'crud/update/:id', component: UpdateComponent ,canActivate: [AuthGuardService]},
+      { path: '', component: HomeComponent, canActivate: [AuthGuardService] },
+      { path: 'userInfo', component: UserInfoComponent, canActivate: [AuthGuardService] },
+      { path: 'about-us', component: AboutUsComponent, canActivate: [AuthGuardService] },
+      { path: 'products', component: KendoGridComponent, canActivate: [AuthGuardService] },
+      { path: 'crud', redirectTo: 'crud/home', pathMatch: 'full', canActivate: [AuthGuardService] },
+      { path: 'crud/home', component: CrudHomeComponent, canActivate: [AuthGuardService] },
+      { path: 'crud/create', component: CreateComponent, canActivate: [AuthGuardService] },
+      { path: 'crud/update/:id', component: UpdateComponent, canActivate: [AuthGuardService] },
+      {
+        path: 'myinfo', component: ParentComponent, canActivate: [AuthGuardService]
+        
+      }
     ]
   },
-  {path:'**',component:SignInComponent}]
+  { path: '**', component: SignInComponent }]
 
 @NgModule({
   declarations: [
     AppComponent,
-    
+
 
     AboutUsComponent,
     KendoGridComponent,
@@ -72,7 +75,10 @@ const appRoutes: Routes = [
     PasswordValidatorDirective,
     EmailValidatorDirective,
     PhoneValidatorDirective,
-    LoginComponent
+    LoginComponent,
+    ParentComponent,
+    ChildComponent,
+    DobDirective
   ],
   imports: [
     CommonModule,
@@ -81,7 +87,7 @@ const appRoutes: Routes = [
     AppRoutingModule,
     RouterModule,
     ReactiveFormsModule,
-    RouterModule.forRoot(appRoutes,{ useHash: true }),
+    RouterModule.forRoot(appRoutes, { useHash: true }),
     GridModule,
     BrowserAnimationsModule,
     HttpClientModule,
