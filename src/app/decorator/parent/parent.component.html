@@ -1,0 +1,13 @@
+<div class="wrap">
+  <div class="card">
+    <img src={{imageUrl}} alt={{name}}>
+    <h1>{{name}}</h1>
+    <p class="title">{{email}}</p>
+    <div class="title" *ngIf="phone!==0 && phone!==null">{{phone}}</div>
+    <p><button>Parent</button></p>
+  </div>
+  <app-child [name]="name" 
+  [email]="email"
+  [phone]="phone"
+  [imageUrl]="imageUrl"></app-child>
+</div>
