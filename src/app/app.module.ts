@@ -51,6 +51,10 @@ const appRoutes: Routes = [
       {
         path: 'myinfo', component: ParentComponent, canActivate: [AuthGuardService]
         
+      },
+      { 
+        path: 'mainModule', loadChildren: () => import('./modules/main-module/main-module.module').
+        then(m => m.MainModuleModule) 
       }
     ]
   },
