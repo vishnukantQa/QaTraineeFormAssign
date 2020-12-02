@@ -16,7 +16,7 @@ export class MainComponent implements OnInit {
   }
 
    openNav() {
-    document.getElementById("mySidenav").style.minWidth = "100px";
+    document.getElementById("mySidenav").style.minWidth = "120px";
     //  document.getElementById("mySidenav").style.height= "100%";
     
     document.getElementById("main").style.marginLeft = "5px";
