@@ -11,7 +11,7 @@ import { SubscriptionLike } from 'rxjs';
 export class PSPAComponent implements OnInit {
 
   subscription: SubscriptionLike;
-  users: Users[];
+  
   id: string = "";
   name: string = "";
   email: string = "";
@@ -27,7 +27,7 @@ export class PSPAComponent implements OnInit {
   ngOnInit(): void {
     this.subscription = this.pspaService.getAll().subscribe((data: Users[]) => {
       this.message = "";
-      this.users = data;
+     
       this.allUsers = data;
 
     }, error => {

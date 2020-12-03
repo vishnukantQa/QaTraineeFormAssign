@@ -12,7 +12,6 @@ export class AuthService {
     let jwtHelper: JwtHelperService = new JwtHelperService();
     
     const token = localStorage.getItem('isLogin');
-    console.log(token);
     
     return  token==="true";
   //  return true;
