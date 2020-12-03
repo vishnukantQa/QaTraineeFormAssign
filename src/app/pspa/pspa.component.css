@@ -1,0 +1,41 @@
+.warning{
+    
+    color: red;
+    margin-top: 5%;
+    font-size: 30px;
+    font-weight: bold;
+    margin-left: 30%;
+}
+
+
+li>a{
+    background-color: cornflowerblue;
+}
+
+
+
+table{
+    width: 90vw;
+}
+
+.whole{
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: stretch;
+    
+    min-height: 80vh;
+
+}
+
+
+
+.wrap-nav{
+    margin-top: 25px;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    
+    justify-content: space-evenly;
+}

@@ -18,7 +18,7 @@ export class PspComponent implements OnInit {
   salary: number;
   message: string = '';
   allEmployee: Employee[];
- 
+  
   itemPerPage:number=5;
   pageSizes = [5, 10, 15];
   currentPage:number=1;
@@ -31,7 +31,7 @@ export class PspComponent implements OnInit {
       this.allEmployee = data;
 
     }, error => {
-      this.message = "data is not fetched";
+      this.message = "Data is not Available please try after some time";
     })
   }
 

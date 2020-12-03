@@ -1,0 +1,59 @@
+<div class="whole">
+    <table>
+      <thead>
+        <tr>
+          <th>
+            <input type="search" class="form-control" placeholder="search Id" [(ngModel)]="id" name="id"
+              (ngModelChange)="searchById()">
+          </th>
+          <th><input type="search" class="form-control" placeholder="search Name" [(ngModel)]="name" name="name"
+              (ngModelChange)="searchByName()">
+          </th>
+          <th><input type="search" class="form-control" placeholder="search Email" [(ngModel)]="email" name="email"
+              (ngModelChange)="searchByEmail()">
+          </th>
+          
+        </tr>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Email</th>
+          
+        </tr>
+    
+      </thead>
+    
+      <tbody>
+        <tr *ngFor="let employee of allUsers | 
+            paginate:{itemsPerPage:itemPerPage,currentPage:currentPage,totalItems:total};">
+          <td>{{employee.id}}</td>
+          <td>{{employee.name}}</td>
+          <td>{{employee.email}}</td>
+          
+        </tr>
+      </tbody>
+    
+    </table>
+    
+    <p *ngIf="message!==''" class="warning">Data is not available currently</p>
+    
+    <div class="wrap-nav">
+        <div></div>
+      
+      <div>
+        <pagination-controls (pageChange)="pageChanged($event)" responsive="true"></pagination-controls>
+    
+       
+      </div>
+    
+      <div>
+        Items per Page:
+        <select (change)="handlePageSizeChange($event)">
+          <option *ngFor="let size of pageSizes" [ngValue]="size">
+            {{ size }}
+          </option>
+        </select>
+      </div>
+    </div>
+    </div>
+    

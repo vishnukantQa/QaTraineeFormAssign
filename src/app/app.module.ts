@@ -34,6 +34,7 @@ import { ParentComponent } from './decorator/parent/parent.component';
 import { DobDirective } from './directives/dob.directive';
 import { PspComponent } from './psp/psp.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { PSPAComponent } from './pspa/pspa.component';
 
 
 
@@ -63,6 +64,9 @@ const appRoutes: Routes = [
       {
         path: 'psp', component:PspComponent, canActivate: [AuthGuardService]
       },
+      {
+        path: 'pspa', component:PSPAComponent, canActivate: [AuthGuardService]
+      }
       
     ]
   },
@@ -91,7 +95,8 @@ const appRoutes: Routes = [
     ParentComponent,
     ChildComponent,
     DobDirective,
-    PspComponent
+    PspComponent,
+    PSPAComponent
   ],
   imports: [
     CommonModule,
