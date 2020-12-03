@@ -32,6 +32,9 @@ import { LoginComponent } from './login/login.component';
 import { CommonModule } from '@angular/common';
 import { ParentComponent } from './decorator/parent/parent.component';
 import { DobDirective } from './directives/dob.directive';
+import { PspComponent } from './psp/psp.component';
+import { NgxPaginationModule } from 'ngx-pagination';
+
 
 
 const appRoutes: Routes = [
@@ -53,9 +56,14 @@ const appRoutes: Routes = [
         
       },
       { 
-        path: 'mainModule', loadChildren: () => import('./modules/main-module/main-module.module').
+        path: 'mainModule', canActivate:[AuthGuardService],
+        loadChildren: () => import('./modules/main-module/main-module.module').
         then(m => m.MainModuleModule) 
-      }
+      },
+      {
+        path: 'psp', component:PspComponent, canActivate: [AuthGuardService]
+      },
+      
     ]
   },
   { path: '**', component: SignInComponent }]
@@ -82,7 +90,8 @@ const appRoutes: Routes = [
     LoginComponent,
     ParentComponent,
     ChildComponent,
-    DobDirective
+    DobDirective,
+    PspComponent
   ],
   imports: [
     CommonModule,
@@ -95,7 +104,8 @@ const appRoutes: Routes = [
     GridModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    NgbModule
+    NgbModule,
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]

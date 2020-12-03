@@ -12,13 +12,13 @@ import { SubscriptionLike } from 'rxjs';
   styleUrls: ['./update.component.css']
 })
 export class UpdateComponent implements OnInit {
-  id = "";
-  name = "";
-  salary = "";
-  age = "";
-  profile = "";
+  id: number;
+  name: string = "";
+  salary: number;
+  age: number;
+  profile: string = "";
   subscription: SubscriptionLike;
-  subscription2:SubscriptionLike;
+  subscription2: SubscriptionLike;
   constructor(private route: ActivatedRoute, private crudService: CrudService, private routes: Router) { }
 
   ngOnInit(): void {
@@ -41,7 +41,7 @@ export class UpdateComponent implements OnInit {
 
   onSubmit(form: NgForm) {
     console.log(form);
-   this.subscription2= this.crudService.update(this.id, form.value).subscribe(res => {
+    this.subscription2 = this.crudService.update(this.id, form.value).subscribe(res => {
       console.log("this is the response of cud" + res);
       this.routes.navigateByUrl("/main/crud");
     })
@@ -51,7 +51,7 @@ export class UpdateComponent implements OnInit {
     if (this.subscription) {
       this.subscription.unsubscribe();
     }
-    if(this.subscription2){
+    if (this.subscription2) {
       this.subscription2.unsubscribe();
     }
   }

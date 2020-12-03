@@ -1,0 +1,60 @@
+<div class="whole">
+<table>
+  <thead>
+    <tr>
+      <th>
+        <input type="search" class="form-control" placeholder="search Id" [(ngModel)]="id" name="id"
+          (ngModelChange)="searchById()">
+      </th>
+      <th><input type="search" class="form-control" placeholder="search Name" [(ngModel)]="name" name="name"
+          (ngModelChange)="searchByName()">
+      </th>
+      <th><input type="search" class="form-control" placeholder="search Age" [(ngModel)]="age" name="age"
+          (ngModelChange)="searchByAge()">
+      </th>
+      <th><input type="search" class="form-control" placeholder="search Salary" [(ngModel)]="salary" name="salary"
+          (ngModelChange)="searchBySalary()">
+      </th>
+    </tr>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Age</th>
+      <th>Salary</th>
+    </tr>
+
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let employee of allEmployee | 
+        paginate:{itemsPerPage:itemPerPage,currentPage:currentPage};">
+      <td>{{employee.id}}</td>
+      <td>{{employee.employee_name}}</td>
+      <td>{{employee.employee_age}}</td>
+      <td>{{employee.employee_salary | currency:'INR'}}</td>
+    </tr>
+  </tbody>
+
+</table>
+
+<p *ngIf="message!==''" class="warning">Data is not available currently</p>
+
+<div class="wrap-nav">
+    <div></div>
+  
+  <div>
+    <pagination-controls (pageChange)="currentPage=$event" responsive="true"></pagination-controls>
+
+   
+  </div>
+
+  <div>
+    Items per Page:
+    <select (change)="handlePageSizeChange($event)">
+      <option *ngFor="let size of pageSizes" [ngValue]="size">
+        {{ size }}
+      </option>
+    </select>
+  </div>
+</div>
+</div>

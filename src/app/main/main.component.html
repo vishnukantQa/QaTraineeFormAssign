@@ -6,7 +6,11 @@
 
   <div class="content">
 
-    <aside id="mySidenav" class="sidenav">
+    <aside id="mySidenav" class="sidenav" [ngClass]="{
+      'openSidenav':isClicked,
+      'collapseSidenav':!isClicked
+
+  }">
       <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">&times;</a>
       <a routerLinkActive="main" routerLink="/main">Home</a>
       <a routerLink="/main/about-us">About</a>
@@ -15,12 +19,19 @@
       <a routerLink="/main/crud">Crud</a>
       <a routerLink="/main/myinfo">myprofile</a>
       <a routerLink="/main/mainModule">Lazymodule</a>
+      <a routerLink="/main/psp">PSP</a>
       <a (click)="userDetailService.logout()">LogOut</a>
 
     </aside>
 
-    <main id="main">
-      <span id="btn"  (click)="openNav()">&#9776;</span>
+    <main id="main" [ngClass]="{
+      'give-main-margin':isClicked,
+      'remove-main-margin':!isClicked
+    }">
+      <span id="btn" (click)="openNav()" [ngClass]="{
+        'showbtn':!isClicked,
+        'hidebtn':isClicked
+      }">&#9776;</span>
       <router-outlet></router-outlet>
     </main>
 

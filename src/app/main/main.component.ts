@@ -12,23 +12,19 @@ export class MainComponent implements OnInit {
 
   constructor(public userDetailService:UserDetailsService) { }
 
+  isClicked:boolean=false;
+
   ngOnInit(): void {
   }
 
    openNav() {
-    document.getElementById("mySidenav").style.minWidth = "120px";
-    //  document.getElementById("mySidenav").style.height= "100%";
-    
-    document.getElementById("main").style.marginLeft = "5px";
-    document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
-    document.getElementById("btn").style.display="none";
+    this.isClicked=true;
+   
   }
   
    closeNav() {
-    document.getElementById("mySidenav").style.minWidth = "0";
-    document.getElementById("main").style.marginLeft= "0";
-    document.body.style.backgroundColor = "white";
-    document.getElementById("btn").style.display="inline";
+     this.isClicked=false;
+    
   }
 
   

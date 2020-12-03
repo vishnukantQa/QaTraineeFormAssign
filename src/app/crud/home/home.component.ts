@@ -13,24 +13,19 @@ export class HomeComponent implements OnInit {
 
   employees: Employee[] = [];
   subscription: SubscriptionLike
-  constructor(public crudService: CrudService,private router:RouterModule) { }
+  constructor(public crudService: CrudService, private router: RouterModule) { }
 
   ngOnInit() {
 
-    this.subscription=  this.crudService.getAll().subscribe((data: Employee[])=>{
+    this.subscription = this.crudService.getAll().subscribe((data: Employee[]) => {
       console.log(data);
-      console.log("above is the data");
+
       this.employees = data;
-      console.log(data[1].id);
-      console.log("above is the data");
-      console.log(this.employees[1].id);
-      
-      
-    })  
+    })
   }
 
-  ngOnDestroy(){
-    if(this.subscription){
+  ngOnDestroy() {
+    if (this.subscription) {
       this.subscription.unsubscribe();
     }
   }
