@@ -35,6 +35,12 @@ import { DobDirective } from './directives/dob.directive';
 import { PspComponent } from './psp/psp.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { PSPAComponent } from './pspa/pspa.component';
+import { StoreModule } from '@ngrx/store';
+import { reducers, metaReducers } from './reducers';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
+import { EffectsModule } from '@ngrx/effects';
+import { UsersEffects } from './users.effects';
 
 
 
@@ -110,7 +116,10 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     HttpClientModule,
     NgbModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    StoreModule.forRoot(reducers, { metaReducers }),
+    !environment.production ? StoreDevtoolsModule.instrument() : [],
+    EffectsModule.forRoot([UsersEffects])
   ],
   providers: [],
   bootstrap: [AppComponent]

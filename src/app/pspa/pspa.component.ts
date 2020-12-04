@@ -1,7 +1,11 @@
+import { UsersActions, LoadUserss } from './../users.actions';
 import { PspaService } from './../services/pspa.service';
 import { Component, OnInit } from '@angular/core';
 import { Users } from '../common/Users';
 import { SubscriptionLike } from 'rxjs';
+import { select, Store } from '@ngrx/store';
+import * as userAction from '../users.actions'
+import * as fromUser from '../users.selectors'
 
 @Component({
   selector: 'app-pspa',
@@ -22,17 +26,35 @@ export class PSPAComponent implements OnInit {
   pageSizes = [5, 10, 15];
   currentPage: number = 1;
 
-  constructor(private pspaService: PspaService) { }
+  constructor(
+    private pspaService: PspaService,
+    private store:Store) { }
 
   ngOnInit(): void {
-    this.subscription = this.pspaService.getAll().subscribe((data: Users[]) => {
-      this.message = "";
-     
-      this.allUsers = data;
 
-    }, error => {
-      this.setErrorMessage()
-    })
+    this.store.dispatch(new userAction.LoadUserss()) //action dispatch
+
+    this.store.pipe(select(fromUser.getUsers)).subscribe(
+      (data: Users[]) => {
+          this.message = "";
+         
+           this.allUsers = data;
+      }
+    )
+
+    this.store.pipe(select(fromUser.getError)).subscribe(
+      error=>{
+        this.message=error;
+      }
+    )
+    // this.subscription = this.pspaService.getAll().subscribe((data: Users[]) => {
+    //   this.message = "";
+     
+    //   this.allUsers = data;
+
+    // }, error => {
+    //   this.setErrorMessage()
+    // })
   }
 
   searchById() {

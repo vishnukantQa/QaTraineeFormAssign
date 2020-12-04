@@ -18,10 +18,10 @@ export class PspComponent implements OnInit {
   salary: number;
   message: string = '';
   allEmployee: Employee[];
-  
-  itemPerPage:number=5;
+
+  itemPerPage: number = 5;
   pageSizes = [5, 10, 15];
-  currentPage:number=1;
+  currentPage: number = 1;
 
   constructor(private crudService: CrudService) { }
 
@@ -29,7 +29,7 @@ export class PspComponent implements OnInit {
     this.subscription = this.crudService.getAll().subscribe((data: Employee[]) => {
       this.employees = data;
       this.allEmployee = data;
-
+      
     }, error => {
       this.message = "Data is not Available please try after some time";
     })
@@ -38,7 +38,7 @@ export class PspComponent implements OnInit {
   searchById() {
     if (this.id == undefined || this.id == null || String(this.id) == "") {
 
-      this.allEmployee = this.employees;
+      this.setData();
     } else {
 
       this.allEmployee = this.employees.filter(res => {
@@ -47,10 +47,11 @@ export class PspComponent implements OnInit {
     }
   }
 
+ 
+
   searchByName() {
     if (this.name == "") {
-
-      this.allEmployee = this.employees;
+      this.setData()
     } else {
 
       this.allEmployee = this.employees.filter(res => {
@@ -63,7 +64,8 @@ export class PspComponent implements OnInit {
   searchByAge() {
     if (String(this.age) == "") {
 
-      this.allEmployee = this.employees;
+      this.setData();
+
     } else {
 
       this.allEmployee = this.employees.filter(res => {
@@ -76,7 +78,8 @@ export class PspComponent implements OnInit {
   searchBySalary() {
     if (String(this.salary) == "") {
 
-      this.allEmployee = this.employees;
+      this.setData();
+
     } else {
 
       this.allEmployee = this.employees.filter(res => {
@@ -85,9 +88,13 @@ export class PspComponent implements OnInit {
     }
   }
 
-  handlePageSizeChange(event){
-    this.itemPerPage=event.target.value;
-    this.currentPage=1;
+  private setData() {
+    this.allEmployee = this.employees;
+  }
+
+  handlePageSizeChange(event) {
+    this.itemPerPage = event.target.value;
+    this.currentPage = 1;
   }
 
   ngOnDestroy() {

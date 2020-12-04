@@ -128,5 +128,8 @@
       }
     }
   },
-  "defaultProject": "formApp"
+  "defaultProject": "formApp",
+  "cli": {
+    "defaultCollection": "@ngrx/schematics"
+  }
 }
