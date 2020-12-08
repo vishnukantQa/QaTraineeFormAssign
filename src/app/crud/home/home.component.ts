@@ -18,8 +18,7 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
 
     this.subscription = this.crudService.getAll().subscribe((data: Employee[]) => {
-      console.log(data);
-
+      
       this.employees = data;
     })
   }

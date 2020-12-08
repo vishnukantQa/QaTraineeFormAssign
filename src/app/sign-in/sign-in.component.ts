@@ -27,8 +27,10 @@ export class SignInComponent implements OnInit, AfterViewInit {
     private readonly fb: FormBuilder
   ) {
     this.signInForm = this.fb.group({
+
       userName: ['', [Validators.required, Validators.minLength(5)]],
       password: ['', [Validators.required, Validators.minLength(5)]]
+
     });
   }
   errorMessage: string;
@@ -84,7 +86,7 @@ export class SignInComponent implements OnInit, AfterViewInit {
       fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'google-jssdk'));
   }
-  
+
   prepareLogin() {
     console.log("waiting for click")
     this.auth2.attachClickHandler(this.loginElement.nativeElement, {},
@@ -136,7 +138,7 @@ export class SignInComponent implements OnInit, AfterViewInit {
             console.log('Successful login for: ' + response.first_name);
             dataLogin.getFBLoginDetails(response);
             dataLogin.getFbVar(FB);
-            
+
           });
 
         }

@@ -15,7 +15,7 @@ import * as fromUser from '../users.selectors'
 export class PSPAComponent implements OnInit {
 
   subscription: SubscriptionLike;
-  
+
   id: string = "";
   name: string = "";
   email: string = "";
@@ -28,7 +28,7 @@ export class PSPAComponent implements OnInit {
 
   constructor(
     private pspaService: PspaService,
-    private store:Store) { }
+    private store: Store) { }
 
   ngOnInit(): void {
 
@@ -36,20 +36,20 @@ export class PSPAComponent implements OnInit {
 
     this.store.pipe(select(fromUser.getUsers)).subscribe(
       (data: Users[]) => {
-          this.message = "";
-         
-           this.allUsers = data;
+        this.message = "";
+
+        this.allUsers = data;
       }
     )
 
     this.store.pipe(select(fromUser.getError)).subscribe(
-      error=>{
-        this.message=error;
+      error => {
+        this.message = error;
       }
     )
     // this.subscription = this.pspaService.getAll().subscribe((data: Users[]) => {
     //   this.message = "";
-     
+
     //   this.allUsers = data;
 
     // }, error => {

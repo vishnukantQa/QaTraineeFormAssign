@@ -18,11 +18,13 @@ export class MainComponent implements OnInit {
   }
 
    openNav() {
+
     this.isClicked=true;
-   
+
   }
   
    closeNav() {
+     
      this.isClicked=false;
     
   }

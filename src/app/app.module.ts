@@ -28,7 +28,6 @@ import { NameValidatorDirective } from './directives/name-validator.directive';
 import { PasswordValidatorDirective } from './directives/password-validator.directive';
 import { EmailValidatorDirective } from './directives/email-validator.directive';
 import { PhoneValidatorDirective } from './directives/phone-validator.directive';
-import { LoginComponent } from './login/login.component';
 import { CommonModule } from '@angular/common';
 import { ParentComponent } from './decorator/parent/parent.component';
 import { DobDirective } from './directives/dob.directive';
@@ -60,20 +59,20 @@ const appRoutes: Routes = [
       { path: 'crud/update/:id', component: UpdateComponent, canActivate: [AuthGuardService] },
       {
         path: 'myinfo', component: ParentComponent, canActivate: [AuthGuardService]
-        
+
       },
-      { 
-        path: 'mainModule', canActivate:[AuthGuardService],
+      {
+        path: 'mainModule', canActivate: [AuthGuardService],
         loadChildren: () => import('./modules/main-module/main-module.module').
-        then(m => m.MainModuleModule) 
+          then(m => m.MainModuleModule)
       },
       {
-        path: 'psp', component:PspComponent, canActivate: [AuthGuardService]
+        path: 'psp', component: PspComponent, canActivate: [AuthGuardService]
       },
       {
-        path: 'pspa', component:PSPAComponent, canActivate: [AuthGuardService]
+        path: 'pspa', component: PSPAComponent, canActivate: [AuthGuardService]
       }
-      
+
     ]
   },
   { path: '**', component: SignInComponent }]
@@ -97,7 +96,7 @@ const appRoutes: Routes = [
     PasswordValidatorDirective,
     EmailValidatorDirective,
     PhoneValidatorDirective,
-    LoginComponent,
+
     ParentComponent,
     ChildComponent,
     DobDirective,
