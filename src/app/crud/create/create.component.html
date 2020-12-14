@@ -1,21 +1,19 @@
 <div>
   <h2>Create Product</h2>
-  <form (ngSubmit)="onSubmit(formElememt)" #formElememt="ngForm">
+  <form (ngSubmit)="onSubmit()" [formGroup]="productForm">
 
     <div class="width">
       <label for="employee_name">Employee Name </label>
-      <input type="text" placeholder="Employee Name" ngModel name="name" />
+      <input type="text" [formControlName]="'userName'" placeholder="Employee Name"  name="name" />
     </div>
     <div class="width">
       <label for="employee_salary">Employee Salary </label>
-      <input type="text" placeholder="Employee Salary" id="employee_salary" ngModel name="salary">
+      <input type="text"  [formControlName]="'salary'" placeholder="Employee Salary" id="employee_salary" name="salary">
     </div>
     <div class="width">
       <label for="employee_age">Employee Age</label>
-      <input type="text" placeholder="Employee Age" ngModel name="age" />
+      <input type="text" [formControlName]="'age'" placeholder="Employee Age"  name="age" />
     </div>
-
-
     <button type="submit">Submit</button>
   </form>
 </div>

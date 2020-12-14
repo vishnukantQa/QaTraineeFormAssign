@@ -1,3 +1,10 @@
 [1208/092945.201:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
 [1208/095640.357:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
 [1208/141320.522:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
+[1209/093709.739:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
+[1210/023620.035:ERROR:process_reader_win.cc(123)] NtOpenThread: {Access Denied} A process has requested access to an object, but has not been granted those access rights. (0xc0000022)
+[1210/023620.196:ERROR:exception_snapshot_win.cc(99)] thread ID 8704 not found in process
+[1211/100710.545:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
+[1211/103646.562:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
+[1211/110946.240:ERROR:filesystem_win.cc(129)] GetFileAttributes C:\Users\hkant\AppData\Local\Temp\karma-28313825\Crashpad\attachments\bf853fac-ab1a-4a44-9afa-47035bee2219: The system cannot find the path specified. (0x3)
+[1213/205824.676:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
