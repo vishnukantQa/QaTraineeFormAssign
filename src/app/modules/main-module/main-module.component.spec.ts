@@ -1,25 +1,21 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { MainModuleComponent } from './main-module.component';
 
 describe('MainModuleComponent', () => {
   let component: MainModuleComponent;
   let fixture: ComponentFixture<MainModuleComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ MainModuleComponent ]
-    })
-    .compileComponents();
-  }));
-
   beforeEach(() => {
+    TestBed.configureTestingModule({
+      schemas: [NO_ERRORS_SCHEMA],
+      declarations: [MainModuleComponent]
+    });
     fixture = TestBed.createComponent(MainModuleComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('can load instance', () => {
     expect(component).toBeTruthy();
   });
 });

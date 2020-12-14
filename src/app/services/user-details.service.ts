@@ -87,7 +87,7 @@ export class UserDetailsService {
   logout() {
     if (this.fb !== null && this.fb !== undefined) {
       this.fb.logout((response) => {
-        console.log("you are logout");
+        alert("you are logout");
         this.zone.run(() => this.router.navigateByUrl("/"));
       });
       this.clearLocalStorage();

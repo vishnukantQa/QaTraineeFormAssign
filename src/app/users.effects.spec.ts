@@ -1,25 +1,25 @@
 import { TestBed } from '@angular/core/testing';
-import { provideMockActions } from '@ngrx/effects/testing';
-import { Observable } from 'rxjs';
-
+import { PspaService } from './services/pspa.service';
+import { Actions } from '@ngrx/effects';
 import { UsersEffects } from './users.effects';
 
 describe('UsersEffects', () => {
-  let actions$: Observable<any>;
-  let effects: UsersEffects;
+  let service: UsersEffects;
 
   beforeEach(() => {
+    const pspaServiceStub = () => ({});
+    const actionsStub = () => ({});
     TestBed.configureTestingModule({
       providers: [
         UsersEffects,
-        provideMockActions(() => actions$)
+        { provide: PspaService, useFactory: pspaServiceStub },
+        { provide: Actions, useFactory: actionsStub }
       ]
     });
-
-    effects = TestBed.inject(UsersEffects);
+    service = TestBed.inject(UsersEffects);
   });
 
-  it('should be created', () => {
-    expect(effects).toBeTruthy();
+  it('can load instance', () => {
+    expect(service).toBeTruthy();
   });
 });
