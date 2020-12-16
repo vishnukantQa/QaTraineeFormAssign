@@ -26,11 +26,14 @@ describe('CrudService', () => {
     it('makes expected calls', () => {
       const httpTestingController = TestBed.inject(HttpTestingController);
       service.getAll().subscribe(res => {
-        expect(res).toEqual([]);
+        expect(res).toEqual(res);
       });
-      const req = httpTestingController.expectOne('HTTP_ROUTE_GOES_HERE');
+      const req = httpTestingController.expectOne(`${service.apiServer}/employees`);
       expect(req.request.method).toEqual('GET');
-      req.flush([]);
+      req.flush({
+        status: 400, 
+        statusText: 'Bad Request'
+      });
       httpTestingController.verify();
     });
   });

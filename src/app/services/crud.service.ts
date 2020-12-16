@@ -12,7 +12,7 @@ import { Employee } from '../common/Employee';
 })
 export class CrudService {
 
-  private apiServer = "http://dummy.restapiexample.com/api/v1";
+  public apiServer = "http://dummy.restapiexample.com/api/v1";
 
   constructor(private httpClient: HttpClient, private route: Router) { }
 

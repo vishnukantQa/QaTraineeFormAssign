@@ -8,7 +8,7 @@ import { Users } from '../common/Users';
   providedIn: 'root'
 })
 export class PspaService {
-  private apiServer = "https://5fc889d52af77700165ad6b9.mockapi.io/api/users";
+  public apiServer = "https://5fc889d52af77700165ad6b9.mockapi.io/api/users";
   public page: number = 1;
   public limit: number = 5;
 

@@ -5,8 +5,11 @@
     <h1>{{name}}</h1>
     <p class="title">{{email}}</p>
     <div class="title" *ngIf="phone!==0">{{phone}}</div>
-
-    <p><button>Contact</button></p>
+    <form *ngIf="isUserSignUp==='true'" (ngSubmit)="onSubmit()" [formGroup]="uploadImage">
+      <label for="uploadImage">uploadImage</label>
+      <input type="file" [formControlName]='"getImage"' accept="image/*" (change)="onFileChange($event)"/>
+      <input type="submit">
+    </form>
   </div>
 </div>
 

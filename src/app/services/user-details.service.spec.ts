@@ -11,8 +11,8 @@ describe('UserDetailsService', () => {
   let service: UserDetailsService;
 
   beforeEach(() => {
-    class routerStub{
-      navigateByUrl(url:string){return url;}
+    class routerStub {
+      navigateByUrl(url: string) { return url; }
     }
     const ngZoneStub = () => ({ run: function0 => ({}) });
     TestBed.configureTestingModule({

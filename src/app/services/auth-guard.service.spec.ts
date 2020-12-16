@@ -7,8 +7,8 @@ describe('AuthGuardService', () => {
   let service: AuthGuardService;
 
   beforeEach(() => {
-    const routerStub = () => ({ navigate: array => ({}) });
-    const authServiceStub = () => ({ isAuthenticated: () => ({}) });
+    const routerStub = () => ({ navigate: array => (['/','']) });
+    const authServiceStub = () => ({ isAuthenticated: () => (false) });
     TestBed.configureTestingModule({
       providers: [
         AuthGuardService,

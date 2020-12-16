@@ -1,10 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { CrudService } from './../../services/crud.service';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
-import { FormsModule } from '@angular/forms';
 import { UpdateComponent } from './update.component';
 
 describe('UpdateComponent', () => {
@@ -14,15 +13,24 @@ describe('UpdateComponent', () => {
   beforeEach(() => {
     const formBuilderStub = () => ({ group: object => ({}) });
     const crudServiceStub = () => ({
-      getById: id => ({ subscribe: f => f({}) }),
-      update: (id, arg1) => ({ subscribe: f => f({}) })
+      getById: id => ({ subscribe: f => f({id:1}) }),
+      update: (id, arg1) => ({ subscribe: f => f({
+        id:1,
+        arg1:{
+          id: "1",
+          name: "bj",
+          salary:"45",
+          age:"52",
+          profile:"",
+        }
+      }) })
     });
     const activatedRouteStub = () => ({ params: { subscribe: f => f({}) } });
-    const routerStub = () => ({ navigateByUrl: string => ({}) });
+    const routerStub = () => ({ navigateByUrl: string => ("/main/crud") });
     TestBed.configureTestingModule({
-      imports: [FormsModule],
       schemas: [NO_ERRORS_SCHEMA],
       declarations: [UpdateComponent],
+      imports:[ReactiveFormsModule],
       providers: [
         { provide: FormBuilder, useFactory: formBuilderStub },
         { provide: CrudService, useFactory: crudServiceStub },
@@ -43,7 +51,7 @@ describe('UpdateComponent', () => {
       const crudServiceStub: CrudService = fixture.debugElement.injector.get(
         CrudService
       );
-      spyOn(crudServiceStub, 'getById').and.callThrough();
+      spyOn(crudServiceStub, 'getById').and.callThrough()
       component.ngOnInit();
       expect(crudServiceStub.getById).toHaveBeenCalled();
     });

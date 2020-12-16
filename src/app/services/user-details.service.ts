@@ -16,8 +16,8 @@ export class UserDetailsService {
   private _email: string = "";
   private _phone: number;
   private _password: string = "";
-  private _imageUrl: string = "";
-
+  private _imageUrl: string = "https://image.shutterstock.com/z/stock-vector-male-silhouette-avatar-profile-picture-199246382.jpg"
+  
   constructor(private router: Router, private httpClient: HttpClient,
     private zone: NgZone
   ) { }
@@ -69,10 +69,13 @@ export class UserDetailsService {
   }
 
   public get imageUrl(): string {
-    if (this._imageUrl === "") {
-      return localStorage.getItem("imageUrl");
+    let localImage=localStorage.getItem("imageUrl");
+    
+    if(localImage){
+      return localImage;
+    }else{
+      return this._imageUrl;
     }
-    return this._imageUrl;
   }
   public setimageUrl(value: string) {
     localStorage.setItem("imageUrl", value);

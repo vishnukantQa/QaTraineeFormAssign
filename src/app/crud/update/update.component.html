@@ -3,19 +3,19 @@
     <form (ngSubmit)="onSubmit()" [formGroup]="updateForm">  
           <div class="width">
             <label for="employee_name">Employee Name </label>
-            <input type="text" placeholder="Employee Name" [formControlName]="'name'" [(ngModel)]="name" name="name" />
+            <input type="text" placeholder="Employee Name" [formControlName]="'name'"  name="name" />
           </div>
           <div class="width">
             <label for="employee_salary">Employee Salary </label>
-            <input type="text" placeholder="Employee Salary" id="employee_salary" [formControlName]="'salary'" [(ngModel)]="salary" name="salary">
+            <input type="text" placeholder="Employee Salary" id="employee_salary" [formControlName]="'salary'"  name="salary">
           </div>
           <div class="width">
             <label for="employee_age">Employee Age</label>
-            <input type="text" placeholder="Employee Age" [formControlName]="'age'" [(ngModel)]="age" name="age" />
+            <input type="text" placeholder="Employee Age" [formControlName]="'age'"  name="age" />
           </div>
           <div class="width">
             <label for="employee_profile"> profile Image</label>
-            <input type="text" placeholder="Profile Image" [formControlName]="'profile'" [(ngModel)]="profile" name="profile" />
+            <input type="text" placeholder="Profile Image" [formControlName]="'profile'"  name="profile" />
           </div>
         
         

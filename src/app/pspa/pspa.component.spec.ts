@@ -4,6 +4,7 @@ import { PspaService } from './../services/pspa.service';
 import { Store } from '@ngrx/store';
 import { FormsModule } from '@angular/forms';
 import { PSPAComponent } from './pspa.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 describe('PSPAComponent', () => {
   let component: PSPAComponent;
@@ -11,9 +12,9 @@ describe('PSPAComponent', () => {
 
   beforeEach(() => {
     const pspaServiceStub = () => ({
-      searchById: id => ({ subscribe: f => f({}) }),
-      searchByName: name => ({ subscribe: f => f({}) }),
-      searchByEmail: email => ({ subscribe: f => f({}) }),
+      searchById: id => ({ subscribe: f => f() }),
+      searchByName: name => ({ subscribe: f => f() }),
+      searchByEmail: email => ({ subscribe: f => f() }),
       limit: {},
       page: {}
     });
@@ -22,7 +23,7 @@ describe('PSPAComponent', () => {
       pipe: arg => ({ subscribe: f => f({}) })
     });
     TestBed.configureTestingModule({
-      imports: [FormsModule],
+      imports: [FormsModule,NgxPaginationModule],
       schemas: [NO_ERRORS_SCHEMA],
       declarations: [PSPAComponent],
       providers: [

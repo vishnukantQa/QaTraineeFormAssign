@@ -1,26 +1,4 @@
-/* 
-p{
-    margin-top: 4vh;
-    color: darkslategrey;
-}
 
-.color-res{
-    color: darkgoldenrod;
-}
-
-.wrap{
-    
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    display: flex;
-    overflow-wrap: break-word;
-    hyphens: auto;
-    word-wrap: wrap;
-    min-width: 80%;
-    background-color: white;
-}
- */
 
  .wrap{
      display: flex;
@@ -30,13 +8,13 @@ p{
      align-items: center;
  }
  img{
-   min-height:30vh;
+   height:40vh;
+  
  }
 
  .card {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     min-width: 20%;
-    margin: auto;
     text-align: center;
   }
   
@@ -46,19 +24,18 @@ p{
     font-size: 18px;
   }
  
-  
-  button {
-    border: none;
-    outline: 0;
-    display: inline-block;
-    padding: 8px;
-    color: white;
-    background-color: #000;
-    text-align: center;
-    cursor: pointer;
-    width: 100%;
-    font-size: 18px;
+  input{
+    width: 80%;
+    margin-top: 5px;
   }
+
+  form{
+    background-color: #000;
+    color: antiquewhite;
+    margin: 0;
+  }
+  
+
   
   a {
     text-decoration: none;

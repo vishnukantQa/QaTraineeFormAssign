@@ -9,3 +9,5 @@
 [1211/110946.240:ERROR:filesystem_win.cc(129)] GetFileAttributes C:\Users\hkant\AppData\Local\Temp\karma-28313825\Crashpad\attachments\bf853fac-ab1a-4a44-9afa-47035bee2219: The system cannot find the path specified. (0x3)
 [1213/205824.676:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
 [1214/163342.197:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
+[1215/203919.081:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
+[1215/223845.189:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)

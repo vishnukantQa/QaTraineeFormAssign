@@ -13,10 +13,7 @@ import { SubscriptionLike } from 'rxjs';
 export class UpdateComponent implements OnInit {
   updateForm:FormGroup
   id: number;
-  name: string = "";
-  salary: number;
-  age: number;
-  profile: string = "";
+ 
   subscription: SubscriptionLike;
   subscription2: SubscriptionLike;
 
@@ -28,11 +25,11 @@ export class UpdateComponent implements OnInit {
     ) {
       this.updateForm = this.fb.group({
         
-        id:[this.id,[Validators.required]],
-        name: [this.name, [Validators.required]],
-        salary: [this.salary, [Validators.required]],
-        age: [this.age, [Validators.required]],
-        profile:[this.profile,[Validators.required]]
+        id:['',[Validators.required]],
+        name: ['', [Validators.required]],
+        salary: ['', [Validators.required]],
+        age: ['', [Validators.required]],
+        profile:['',[Validators.required]]
   
       });
      }
@@ -42,10 +39,14 @@ export class UpdateComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.id = params['id'];
       this.subscription = this.crudService.getById(this.id).subscribe((res: Employee) => {
-        this.name = res.employee_name;
-        this.age = res.employee_age;
-        this.salary = res.employee_salary;
-        this.profile = res.profile_image;
+        
+        this.updateForm.patchValue({
+          id: this.id,
+          name: res.employee_name,
+          salary:res.employee_salary,
+          age:res.employee_age,
+          profile:res.profile_image,
+        });
       });
 
     });
@@ -55,7 +56,7 @@ export class UpdateComponent implements OnInit {
 
 
   onSubmit() {
-    console.log(this.updateForm.getRawValue());
+    
     this.subscription2 = this.crudService.update(this.id, this.updateForm.getRawValue()).subscribe(res => {
       console.log("this is the response of cud" + res);
       this.routes.navigateByUrl("/main/crud");

@@ -6,9 +6,6 @@ import * as userAction from './users.actions';
 import { catchError, map, mergeMap } from 'rxjs/operators';
 import { Action } from '@ngrx/store';
 
-
-
-
 @Injectable()
 export class UsersEffects {
 

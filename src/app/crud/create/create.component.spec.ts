@@ -2,7 +2,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { Router, RouterModule } from '@angular/router';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
-import { CrudService } from './../../services/crud.service';
+import { CrudService } from '../../services/crud.service';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 
@@ -31,8 +31,7 @@ describe('CreateComponent', () => {
   });
 
   it('should check user name is invalid or not',()=>{
-    let name=component.productForm.controls['userName'];
-    console.log(name);
+    let name=component.productForm.controls['name'];
     expect(name.valid).toBeFalsy();
     expect(name.errors['required']).toBeTruthy();
     name.setValue('abc');
@@ -66,7 +65,7 @@ describe('CreateComponent', () => {
 
     expect(component.productForm.valid).toBeFalsy();
 
-    component.productForm.controls['userName'].setValue('abc');
+    component.productForm.controls['name'].setValue('abc');
     component.productForm.controls['salary'].setValue('500');
     component.productForm.controls['age'].setValue('50');
 

@@ -5,8 +5,10 @@ import {
 } from '@angular/common/http/testing';
 import { PspaService } from './pspa.service';
 
+
 describe('PspaService', () => {
   let service: PspaService;
+ 
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -34,9 +36,12 @@ describe('PspaService', () => {
       service.getAll().subscribe(res => {
         expect(res).toEqual(res);
       });
-      const req = httpTestingController.expectOne('HTTP_ROUTE_GOES_HERE');
+      const req = httpTestingController.expectOne(`${service.apiServer}?page=${service.page}&limit=${service.limit}`);
       expect(req.request.method).toEqual('GET');
-      req.flush('get');
+      req.flush({
+        status: 400, 
+        statusText: 'Bad Request'
+      });
       httpTestingController.verify();
     });
   });

@@ -20,7 +20,7 @@ export class CreateComponent implements OnInit {
     private readonly fb: FormBuilder) {
     this.productForm = this.fb.group({
 
-      userName: ['', [Validators.required]],
+      name: ['', [Validators.required]],
       salary: ['', [Validators.required]],
       age: ['', [Validators.required]]
 
@@ -38,7 +38,7 @@ export class CreateComponent implements OnInit {
         this.productCreated = true;
         console.log('Product created!')
         console.log(res);
-        this.router.navigateByUrl('main/crud/home')
+        this.router.navigateByUrl('/main/crud/home');
       });
     } else {
       this.errorMessage = 'correctly filled the above details';
