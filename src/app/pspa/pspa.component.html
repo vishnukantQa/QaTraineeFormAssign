@@ -18,7 +18,7 @@
           <th>ID</th>
           <th>Name</th>
           <th>Email</th>
-          
+          <th>Action</th>      
         </tr>
     
       </thead>
@@ -29,6 +29,7 @@
           <td>{{employee.id}}</td>
           <td>{{employee.name}}</td>
           <td>{{employee.email}}</td>
+          <td> <button type="button" [routerLink]=" ['/main/pspa/update/',employee.id]">Edit Info</button></td>
           
         </tr>
       </tbody>

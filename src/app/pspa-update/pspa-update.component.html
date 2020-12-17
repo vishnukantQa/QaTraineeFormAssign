@@ -1,0 +1,15 @@
+<div>
+    <h1>Update Product</h1>
+    <form (ngSubmit)="onSubmit()" [formGroup]="updateForm">  
+          <div class="width">
+            <label for="employee_name">Employee Name </label>
+            <input type="text" placeholder="Employee Name" [formControlName]="'name'"  name="name" />
+          </div>
+          <div class="width">
+            <label for="employee_email">Employee Salary </label>
+            <input type="text" placeholder="Employee Email" id="employee_salary" [formControlName]="'email'"  name="email">
+          </div>
+        
+        <button type="submit">Submit</button>
+    </form>
+</div>

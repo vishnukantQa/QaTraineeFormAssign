@@ -32,7 +32,6 @@ describe('UpdateComponent', () => {
       declarations: [UpdateComponent],
       imports:[ReactiveFormsModule],
       providers: [
-        { provide: FormBuilder, useFactory: formBuilderStub },
         { provide: CrudService, useFactory: crudServiceStub },
         { provide: ActivatedRoute, useFactory: activatedRouteStub },
         { provide: Router, useFactory: routerStub }
@@ -47,7 +46,7 @@ describe('UpdateComponent', () => {
   });
 
   describe('ngOnInit', () => {
-    it('makes expected calls', () => {
+    it('makes calls to getby id ', () => {
       const crudServiceStub: CrudService = fixture.debugElement.injector.get(
         CrudService
       );
@@ -58,7 +57,7 @@ describe('UpdateComponent', () => {
   });
 
   describe('onSubmit', () => {
-    it('makes expected calls', () => {
+    it('makes call to navigate by url and update function', () => {
       const crudServiceStub: CrudService = fixture.debugElement.injector.get(
         CrudService
       );

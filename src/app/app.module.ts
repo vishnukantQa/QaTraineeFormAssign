@@ -40,6 +40,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
 import { UsersEffects } from './users.effects';
+import { PspaUpdateComponent } from './pspa-update/pspa-update.component';
 
 
 
@@ -71,7 +72,8 @@ const appRoutes: Routes = [
       },
       {
         path: 'pspa', component: PSPAComponent, canActivate: [AuthGuardService]
-      }
+      },
+      {path: 'pspa/update/:id', component: PspaUpdateComponent, canActivate: [AuthGuardService]}
 
     ]
   },
@@ -101,7 +103,8 @@ const appRoutes: Routes = [
     ChildComponent,
     DobDirective,
     PspComponent,
-    PSPAComponent
+    PSPAComponent,
+    PspaUpdateComponent
   ],
   imports: [
     CommonModule,
