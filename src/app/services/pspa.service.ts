@@ -36,11 +36,14 @@ export class PspaService {
   }
 
   update(id, user:Users): Observable<Users> {
-    console.log(JSON.stringify(user));
+
     console.log(this.apiServer+"/"+id);
-    return this.httpClient.put<any>(this.apiServer +"/"+ id, JSON.stringify(user))
+    return this.httpClient.put<Users>(this.apiServer +"/"+ id, user)
+      
   }
+    
 }
+
 
 
 

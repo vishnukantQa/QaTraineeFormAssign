@@ -1,9 +1,13 @@
+import { select, Store } from '@ngrx/store';
 import { Users } from './../common/Users';
 import { PspaService } from './../services/pspa.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SubscriptionLike } from 'rxjs';
+import * as updateUserAction from '../users.actions';
+import * as fromUser from '../users.selectors';
+import { Update } from '@ngrx/entity';
 
 @Component({
   selector: 'app-pspa-update',
@@ -22,7 +26,8 @@ export class PspaUpdateComponent implements OnInit {
     private route: ActivatedRoute, 
     private routes: Router,
     private readonly fb: FormBuilder,
-    private pspaService:PspaService
+    private pspaService:PspaService,
+    private store:Store
     ) {
       this.updateForm = this.fb.group({
         
@@ -51,12 +56,22 @@ export class PspaUpdateComponent implements OnInit {
 
 
   onSubmit() {
-    console.log("buttonClick");
     
-    this.subscription2 = this.pspaService.update(this.id, this.updateForm.getRawValue()).subscribe(res => {
-      console.log( res);
-      this.routes.navigateByUrl("/main/pspa");
-    })
+
+    this.store.dispatch(new updateUserAction.UpdateUser(this.updateForm.getRawValue(),String(this.id)));
+   this.subscription2= this.store.pipe(select(fromUser.getUsers)).subscribe(
+      (data: Users[]) => {
+        
+        console.log(data);
+        this.routes.navigateByUrl("/main/pspa");
+  
+      }
+    )
+
+    // this.subscription2 = this.pspaService.update(this.id, this.updateForm.getRawValue()).subscribe(res => {
+
+    //   this.routes.navigateByUrl("/main/pspa");
+    // })
   }
 
   ngOnDestroy() {

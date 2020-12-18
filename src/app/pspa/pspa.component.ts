@@ -37,7 +37,8 @@ export class PSPAComponent implements OnInit {
     this.store.pipe(select(fromUser.getUsers)).subscribe(
       (data: Users[]) => {
         this.message = "";
-
+        console.log(data);
+        
         this.allUsers = data;
       }
     )
