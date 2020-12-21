@@ -11,16 +11,16 @@ describe('UserDetailsService', () => {
   let service: UserDetailsService;
 
   beforeEach(() => {
-    class routerStub {
-      navigateByUrl(url: string) { return url; }
-    }
+    const routerStub = () => ({ navigateByUrl: string => ({}) });
     const ngZoneStub = () => ({ run: function0 => ({}) });
+    
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
       providers: [
         UserDetailsService,
         { provide: Router, useFactory: routerStub },
-        { provide: NgZone, useFactory: ngZoneStub }
+        { provide: NgZone, useFactory: ngZoneStub },
+        UserDetailsService
       ]
     });
     service = TestBed.inject(UserDetailsService);

@@ -32,7 +32,9 @@ export class UsersEffects {
   updateUsers$:Observable<Action>= this.actions$.pipe(
     ofType(userAction.UsersActionTypes.UpdateUser),
     map((action:userAction.UpdateUser)=>action.payload),
+   
     mergeMap(
+
       (user:Users)=>this.pspaService.update(user.id,user).pipe(
         map(
           (updateUser:Users)=>

@@ -29,7 +29,9 @@ export class LoadUserssFailure implements Action {
 
 export class UpdateUser implements Action {
   readonly type = UsersActionTypes.UpdateUser;
-  constructor(public payload:Users,public id:String){}
+  constructor(public payload:Users,public id:String){
+    payload.id=id.toString();
+  }
 }
 
 export class UpdateUserSuccess implements Action {

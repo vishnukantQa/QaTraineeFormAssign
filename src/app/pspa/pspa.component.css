@@ -7,6 +7,11 @@
     margin-left: 30%;
 }
 
+option{
+    color: white;
+    background-color: black;
+}
+
 
 li>a{
     background-color: cornflowerblue;

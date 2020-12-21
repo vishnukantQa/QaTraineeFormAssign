@@ -15,6 +15,10 @@ export class PspaService {
 
   constructor(private httpClient: HttpClient) { }
 
+  getAllData(){
+    return this.httpClient.get<Users[]>(this.apiServer);
+  }
+
   getAll() {
     return this.httpClient.get<Users[]>(this.apiServer + '?page=' + this.page + '&limit=' + this.limit);
   }

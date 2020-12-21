@@ -39,7 +39,16 @@
     <p *ngIf="message!==''" class="warning">Data is not available currently</p>
     
     <div class="wrap-nav">
-        <div></div>
+        <div>
+          <select (change)="handleExportType($event)">
+            <option>Export current page</option>
+            <option>Export whole data</option>
+          </select>
+
+          <button (click)="handleExport()" >Export</button>
+          <!-- <button (click)="exportAsXLSX()">Export Data</button> -->
+        </div>
+        
       
       <div>
         <pagination-controls (pageChange)="pageChanged($event)" responsive="true"></pagination-controls>
